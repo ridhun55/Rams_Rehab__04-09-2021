@@ -1,0 +1,86 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+   <div class="container-fluid">
+      <a class="navbar-brand waves-effect" href="{% url 'home' %}" target="_blank">
+      <strong class="blue-text">Ram's Rehab</strong>
+      </a>
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <!-- Left -->
+         <ul class="navbar-nav mr-auto">
+            <li class="nav-item mr-2">
+               <a class="nav-link waves-effect" href="{% url 'administration_home' %}">Home
+               </a>
+            </li>
+            <li class="nav-item mr-2">
+               {% if todayFlag %}
+                  <a class="nav-link text-white bg-success waves-effect" href="{% url 'today' %}">Today</a>
+               {% else %}  
+                  <a class="nav-link waves-effect" href="{% url 'today' %}">Today</a>
+               {% endif %}
+            </li>
+            <li class="nav-item mr-2">
+               {% if tomorrowFlag %}
+                  <a class="nav-link text-white bg-primary waves-effect" href="{% url 'tomorrow' %}">Tomorrow</a>
+               {% else %}  
+                  <a class="nav-link waves-effect" href="{% url 'tomorrow' %}">Tomorrow</a>
+               {% endif %}
+            </li>
+            
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+                 Website Settings
+               </a>
+               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li class="nav-item mx-1">
+                     <a class="nav-link waves-effect" href="{% url 'add_doctors_profile' %}">Add Doctors Profile</a>
+                  </li>
+                  <li class="nav-item mx-1">
+                     <a class="dropdown-item waves-effect" href="{% url 'nurse_register' %}">Nurse / Staff Registration</a>
+                  </li>
+                  <li class="nav-item mx-1">
+                     <a class="nav-link waves-effect" href="{% url 'add_gallery_image' %}">Add Gallery Images</a>
+                  </li>
+                  <li class="nav-item mx-1">
+                     <a class="nav-link waves-effect" href="{% url 'add_shop_item' %}">Add Shop Items</a>
+                  </li>
+                  <li class="nav-item mx-1">
+                     <a class="nav-link waves-effect" href="{% url 'add_feedback' %}">Add Feedback</a>
+                  </li>
+                  <li class="nav-item mx-1">
+                     <a class="nav-link waves-effect" href="{% url 'add_count' %}">Add Counter Value</a>
+                  </li>
+               </ul>
+            </li>
+            {% if today_date %}
+               <li class="nav-item mr-2"> 
+                  <a class="nav-link waves-effect" style="color: #1e80b0;font-family: 'Play', sans-serif;;font-size: 19px;line-height: 22px;letter-spacing: 0.07em;font-weight: 600;padding-left: 63px;"> 
+                     Date : {{ today_date|date:"d/m/Y" }}
+                  </a>
+               </li>
+            {% endif %}
+         </ul>
+         <!-- Right -->
+         <ul class="navbar-nav nav-flex-icons">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+               <a href="{% url 'logout' %}" class="nav-link border border-light rounded waves-effect">
+               <i class="fas fa-sign-out-alt mr-1"></i>Logout
+               </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+               <a href="{% url 'administration_login' %}" class="nav-link border border-light rounded waves-effect mr-2">
+               <i class="fas fa-sign-in-alt mr-1"></i>Login
+               </a>
+            </li>
+            {% endif %}
+         </ul>
+      </div>
+   </div>
+</nav>
+
