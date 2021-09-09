@@ -159,11 +159,11 @@
          {% for search in search_post %}
          <div class="col-md-4 d-flex align-items-stretch mt-4">
             <div class="card">
-               <a href="#">
+               <a href="{% url 'shop_detail' search.id %}">
                   <img class="card-img-top" src="{{ search.item_Image.url}}" alt="Card image cap">
                </a>
                  <div class="card-body">
-                  <a href="#">
+                  <a href="{% url 'shop_detail' search.id %}">
                      <h5 class="card-title">{{ search.item }}<span class="card-sub"> </span></h5>
                   </a>
                   <div class="d-flex justify-content-between pt-3">
@@ -171,12 +171,13 @@
                         <strike>
                            <b><p>Price {{ search.price }}</p></b>
                         </strike>
-                     <b><p class="text-danger">Offer Price : {{ search.offer_price }}/-</p></b>
+                     <b><p class="text-danger">Our Price : {{ search.offer_price }}/-</p></b>
                      {% else %}
                         <b><p>Price {{ search.price }}</p></b>
                      {% endif %}
                   </div>
-                 <p class="card-text">{{ search.snippets|slice:":100"|safe }}... <a href="#"class="d-flex flex-row-reverse m-0 p-0"> ReadMore</a></p>
+                 <p class="card-text">{{ search.discription|slice:":100"|safe }}... 
+                    <a href="{% url 'shop_detail' search.id %}"class="d-flex flex-row-reverse m-0 p-0"> ReadMore</a></p>
                </div>
              </div>
           </div>
@@ -186,11 +187,11 @@
             {% for search in search_category %}
             <div class="col-md-4 d-flex align-items-stretch mt-4">
                <div class="card">
-                  <a href="#">
+                  <a href="{% url 'shop_detail' search.id %}">
                      <img class="card-img-top" src="{{ search.item_Image.url}}" alt="Card image cap">
                   </a>
                     <div class="card-body">
-                     <a href="#">
+                     <a href="{% url 'shop_detail' search.id %}">
                         <h5 class="card-title">{{ search.item }}<span class="card-sub"> </span></h5>
                      </a>
                      <div class="d-flex justify-content-between pt-3">
@@ -198,12 +199,12 @@
                            <strike>
                               <b><p>Price {{ search.price }}</p></b>
                            </strike>
-                        <b><p class="text-danger">Offer Price : {{ search.offer_price }}/-</p></b>
+                        <b><p class="text-danger">Our Price : {{ search.offer_price }}/-</p></b>
                         {% else %}
                            <b><p>Price {{ search.price }}</p></b>
                         {% endif %}
                      </div>
-                    <p class="card-text">{{ search.snippets|slice:":100"|safe }}... <a href="#"class="d-flex flex-row-reverse m-0 p-0"> ReadMore</a></p>
+                    <p class="card-text">{{ search.discription|slice:":100"|safe }}... <a href="{% url 'shop_detail' item.id %}"class="d-flex flex-row-reverse m-0 p-0"> ReadMore</a></p>
                   </div>
                 </div>
              </div>

@@ -21,6 +21,7 @@ def DashboardView(request):
     yF = models.QuickAppointment.objects.filter(flag=False).count()
     xT = models.Appointment.objects.filter(flag=True).count()
     xF = models.Appointment.objects.filter(flag=False).count()
+    msg = models.Messages.objects.all().count()
 
     today_date = datetime.today().date()
     todat1 = models.PatentRegistration.objects.filter(booking_date=today_date,flag=False)
@@ -55,6 +56,7 @@ def DashboardView(request):
     context = {
         'yT':yT, 'yF':yF,
         'xT':xT, 'xF':xF,
+        'msg':msg,
         'todayFlag': todayFlag, 
         'tomorrowFlag' : tomorrowFlag,
         'today_count' : today_count,
@@ -404,7 +406,7 @@ class AddGalleryImage(CreateView):
     success_url = reverse_lazy('add_gallery_image')
 
     def get_context_data(self, *args, **kwargs):
-        data = models.Gallery.objects.all()
+        data = models.Gallery.objects.all().order_by('-id')
         context = super(AddGalleryImage, self).get_context_data(*args, **kwargs)
         context["data"] = data
         context["today_date"] = datetime.today().date()
@@ -427,7 +429,7 @@ class AddFeedbackView(CreateView):
     success_url = reverse_lazy('add_feedback')
 
     def get_context_data(self, *args, **kwargs):
-        data = models.Feedback.objects.all()
+        data = models.Feedback.objects.all().order_by('-id')
         context = super(AddFeedbackView, self).get_context_data(*args, **kwargs)
         context["data"] = data
         context["today_date"] = datetime.today().date()
@@ -443,6 +445,7 @@ def DeleteFeedbackView(request,id):
     return render(request,html,context)
 
 
+
 class AddDoctorsProfileView(CreateView):
     model = models.DoctorsProfile
     form_class = DoctorsForm
@@ -450,7 +453,7 @@ class AddDoctorsProfileView(CreateView):
     success_url = reverse_lazy('add_doctors_profile')
 
     def get_context_data(self, *args, **kwargs):
-        data = models.DoctorsProfile.objects.all()
+        data = models.DoctorsProfile.objects.all().order_by('-id')
         context = super(AddDoctorsProfileView, self).get_context_data(*args, **kwargs)
         context["data"] = data
         context["today_date"] = datetime.today().date()
@@ -473,7 +476,7 @@ class AddShopItemView(CreateView):
     success_url = reverse_lazy('add_shop_item')
 
     def get_context_data(self, *args, **kwargs):
-        data = models.Shop.objects.all()
+        data = models.Shop.objects.all().order_by('-id')
         context = super(AddShopItemView, self).get_context_data(*args, **kwargs)
         context["data"] = data
         context["today_date"] = datetime.today().date()
@@ -488,6 +491,7 @@ def DeleteShopItemView(request,id):
     html = 'administration/forms/add_shop_item.html'
     return render(request,html,context)
 
+# ===================================
 
 def SearchPatientTableView(request):
     data = models.PatentRegistration.objects.all()
@@ -507,6 +511,51 @@ def SearchPatientTableView(request):
          })
     else:    
       return render(request, 'administration/tables/search_patient_table.html', {}) 
+
+
+def SearchAppointmentTableView(request):
+    data = models.Appointment.objects.all()
+    if request.method == 'POST':
+      searched_appointment = request.POST['searched_appointment']
+      search_name = models.Appointment.objects.filter(name__icontains=searched_appointment)
+      search_mobile = models.Appointment.objects.filter(mobile__icontains=searched_appointment)
+      search_mobile2 = models.Appointment.objects.filter(other_contact__icontains=searched_appointment)
+      
+      return render(request, 'administration/tables/search_appointment_table.html', {
+         'searched_patient':searched_appointment, 
+         'search_name':search_name, 
+         'search_mobile':search_mobile,
+         'search_mobile2':search_mobile2,
+         'data':data,
+         'today_date':datetime.today().date()
+         })
+    else:    
+      return render(request, 'administration/tables/search_appointment_table.html', {}) 
+
+
+
+def SearchQuickAppointmentTableView(request):
+    data = models.QuickAppointment.objects.all()
+    if request.method == 'POST':
+      searched_quick_appointment = request.POST['searched_quick_appointment']
+      search_name = models.QuickAppointment.objects.filter(name__icontains=searched_quick_appointment)
+      search_mobile = models.QuickAppointment.objects.filter(mobile__icontains=searched_quick_appointment)
+      search_mobile2 = models.QuickAppointment.objects.filter(other_contact__icontains=searched_quick_appointment)
+      
+      return render(request, 'administration/tables/search_quick_appointment_table.html', {
+         'searched_patient':searched_quick_appointment, 
+         'search_name':search_name, 
+         'search_mobile':search_mobile,
+         'search_mobile2':search_mobile2,
+         'data':data,
+         'today_date':datetime.today().date()
+         })
+    else:    
+      return render(request, 'administration/tables/search_quick_appointment_table.html', {}) 
+
+
+
+# ======================================
 
 
 def AddCountView(request):
@@ -542,4 +591,37 @@ def DeleteCountView(request,id):
     return redirect('add_count')
     context = {}
     html = 'administration/forms/add_count.html'
+    return render(request,html,context)
+
+
+
+def AddGoogleMeetView(request):
+    data = models.GoogleMeet.objects.all()
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        link = request.POST.get('link')
+        submit_date = datetime.today().date()
+
+        obj = models.GoogleMeet()
+        obj.name = name
+        obj.link = link
+        obj.submit_date = submit_date
+
+        if name == '' or link == '':
+            return redirect('error')
+        else:
+            obj.save()
+            return redirect('add_google_meet')
+    context = { 'data' : data, 'today_date':datetime.today().date() }
+    print(data)
+    html = 'administration/forms/add_google_meet.html'
+    return render(request,html,context)
+
+
+def DeleteGoogleMeetView(request,id):
+    obj = models.GoogleMeet.objects.get(id=id)
+    obj.delete()
+    return redirect('add_google_meet')
+    context = {}
+    html = 'administration/forms/add_google_meet.html'
     return render(request,html,context)

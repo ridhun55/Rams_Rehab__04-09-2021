@@ -61,7 +61,7 @@
    <section class="breadcrumbs">
       <div class="container">
          <div class="d-flex justify-content-between align-items-center">
-            <h2>Services</h2>
+            <h2>Gallery</h2>
             <ol>
             <li><a href="{% url 'home' %}">Home</a></li>
             <li>Gallery</li>
@@ -76,20 +76,21 @@
 
         <div class="section-title">
           <h2>Gallery</h2>
-          {% if not data %}
+          <!-- {% if data %}
           <p class="text-danger pt-5">* Add Images to Gallery from the Administration Section</p>
-          {% endif %}
+          {% endif %} -->
+
         </div>
       </div>
 
       <div class="container-fluid">
         <div class="row no-gutters">
-
-          {% for img in data %}
+         
+         {% for item in img_data %}
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="{{ img.image.url}}" class="venobox vbox-item" data-gall="gallery-item">
-                <img src="{{ img.image.url}}" alt="{{ img.image_title }}" class="img-fluid">
+              <a href="{{ item.image.url}}" class="venobox vbox-item" data-gall="gallery-item">
+                <img src="{{ item.image.url}}" alt="{{ item.image_title }}" class="img-fluid">
               </a>
             </div>
           </div>

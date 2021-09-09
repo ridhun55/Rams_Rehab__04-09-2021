@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
    <div class="container-fluid">
-      <a class="navbar-brand waves-effect" href="{% url 'home' %}" target="_blank">
+      <a class="navbar-brand waves-effect" href="{% url 'administration_home' %}">
       <strong class="blue-text">Ram's Rehab</strong>
       </a>
       <!-- Collapse -->
@@ -53,6 +53,9 @@
                   </li>
                   <li class="nav-item mx-1">
                      <a class="nav-link waves-effect" href="{% url 'add_count' %}">Add Counter Value</a>
+                  </li>
+                  <li class="nav-item mx-1">
+                     <a class="nav-link waves-effect" href="{% url 'add_google_meet' %}">Add Google Meet Link</a>
                   </li>
                </ul>
             </li>

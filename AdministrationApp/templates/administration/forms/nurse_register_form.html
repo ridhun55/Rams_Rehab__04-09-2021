@@ -80,22 +80,23 @@
                      <th>Name</th>
                      <th>Username</th>
                      <th>Is Staff</th>
-                     <th>Is SuperUser</th>
+                     <th>Status</th>
                      <th>Email</th>
                      <th>Delete</th>
                   </tr>
                </thead>
                <tbody class="text-center" >
-                  {% for item in data %}
-                  {% if item.is_staff %} 
-                  <tr>{% else %} 
-                  <tr class="text-primary">
+                  {% for item in data %}              
+                  <tr>
+                     <th>{{ forloop.counter }}</th>
+                     {% if item.is_superuser %}
+                        <th>ADMIN</th>
+                     {% else %}
+                        <th >{{ item.first_name|capfirst }} {{ item.last_name }}</th>
                      {% endif %}
-                     <th>{{ forloop.revcounter }}</th>
-                     <th >{{ item.first_name|capfirst }} {{ item.last_name }}</th>
                      <th >{{ item.username }}</th>
                      <th >{% if item.is_staff %} <span class="text-danger">Yes</span> {% else %} No {% endif %}</th>
-                     <th >{% if item.is_superuser %} Yes {% else %} No {% endif %}</th>
+                     <th >{% if item.is_superuser %} Admin {% else %} {% if item.is_staff %} Nurse / Staff {% else %}Blogger {% endif %}{% endif %}</th>
                      <th >{{ item.email }}</th>
                      <td>
                         {% if item.is_superuser %} {% else %}

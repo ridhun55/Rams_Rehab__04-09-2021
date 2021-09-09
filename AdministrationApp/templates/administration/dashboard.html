@@ -22,7 +22,7 @@
                <div class="card-body">
                   <div class="list-group list-group-flush">
                      <span>Appointment</span>
-                     <a href="{% url 'quick_appointment_table' %}" class="list-group-item list-group-item-action waves-effect">
+                     <a href="{% url 'quick_appointment_table' %}" class="list-group-item list-group-item-action waves-effect" style="padding-right: 0px;">
                      <span class="badge badge-success badge-pill pull-right">{{ yF }} 
                      </span>
                      <span class="badge badge-danger badge-pill pull-right">{{ yT }} 
@@ -46,11 +46,11 @@
                   <div class="list-group list-group-flush">           
                      <span>Contact </span>
                      <a href="{% url 'message_table' %}" class="list-group-item list-group-item-action waves-effect">
-                     <span class="badge badge-danger badge-pill pull-right">5
+                     <span class="badge badge-danger badge-pill pull-right">{% if msg %}{{ msg }}{% else %}0{% endif %}
                      </span> Contact Us
                      </a>
                      <a href="{% url 'message_table' %}" class="list-group-item list-group-item-action waves-effect">
-                     <span class="badge badge-primary badge-pill pull-right">14
+                     <span class="badge badge-primary badge-pill pull-right">{% if msg %}{{ msg }}{% else %}0{% endif %}
                      </span> Messages
                      </a>
                   </div>

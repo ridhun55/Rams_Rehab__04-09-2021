@@ -147,12 +147,12 @@
                         <strike>
                            <b><p>Price {{ item.price }}</p></b>
                         </strike>
-                     <b><p class="text-danger">Offer Price : {{ item.offer_price }}/-</p></b>
+                     <b><p class="text-danger">Our Price : {{ item.offer_price }}/-</p></b>
                      {% else %}
                         <b><p>Price {{ item.price }}</p></b>
                      {% endif %}
                   </div>
-                 <p class="card-text">{{ item.snippets|slice:":100"|safe }}... 
+                 <p class="card-text">{{ item.discription|slice:":100"|safe }}... 
                     <a href="{% url 'shop_detail' item.id %}"class="d-flex flex-row-reverse m-0 p-0"> ReadMore</a></p>
                </div>
              </div>

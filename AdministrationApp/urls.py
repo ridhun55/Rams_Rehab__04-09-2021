@@ -15,7 +15,10 @@ from AdministrationApp.views import MessageTableView, DeleteMessageView
 from AdministrationApp.views import SubscribersTableView, DeleteSubscribersView
 from AdministrationApp.views import AddShopItemView, DeleteShopItemView
 from AdministrationApp.views import SearchPatientTableView
+from AdministrationApp.views import SearchAppointmentTableView
+from AdministrationApp.views import SearchQuickAppointmentTableView
 from AdministrationApp.views import AddCountView, DeleteCountView
+from AdministrationApp.views import AddGoogleMeetView, DeleteGoogleMeetView
 
 urlpatterns = [
     path('login/', AdministrationLoginView, name='administration_login'),
@@ -65,8 +68,13 @@ urlpatterns = [
     path('shop/<int:id>/delete', DeleteShopItemView, name="delete_shop_item"),
     
     path('search_patient', SearchPatientTableView, name="search_patient_table"),
+    path('search_appointment', SearchAppointmentTableView, name="search_appointment_table"),
+    path('search_quick_appointment', SearchQuickAppointmentTableView, name="search_quick_appointment_table"),
     
     path('add_count', AddCountView, name="add_count"),
     path('add_count/<int:id>/delete', DeleteCountView, name="delete_count"),
+    
+    path('add_google-meet', AddGoogleMeetView, name="add_google_meet"),
+    path('add_google-meet/<int:id>/delete', DeleteGoogleMeetView, name="delete_google_meet"),
     
 ]

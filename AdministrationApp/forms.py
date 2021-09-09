@@ -46,13 +46,13 @@ class DoctorsForm(forms.ModelForm):
 class ShopForm(forms.ModelForm):
    class Meta:
       model = Shop
-      fields = ('item', 'price','offer_price','category', 'item_Image','snippets')
+      fields = ('item', 'price','offer_price','category', 'item_Image','discription')
       
       widgets = {
          'item': forms.TextInput(attrs={'class':'form-control','placeholder':''}),
          'price': forms.TextInput(attrs={'class':'form-control','placeholder':''}),
          'offer_price': forms.TextInput(attrs={'class':'form-control','placeholder':''}),
          'category': forms.TextInput(attrs={'class':'form-control','placeholder':''}),
-         'snippets': forms.TextInput(attrs={'class':'form-control','placeholder':'max 10 words, min 8 words','row':5}),
+         'discription': forms.Textarea(attrs={'class':'form-control','placeholder':'About Product discriptions.. '}),
          'rating': forms.TextInput(attrs={'class':'form-control','placeholder':''}),  
       }

@@ -50,17 +50,16 @@ def AboutView(request):
 
 def ServicesView(request):
     c_data = models.CounterValues.objects.all()
-    context = {'home': '', 'about': '', 'services': 'active', 'gallery': '', 'contact': ''}
-    context = {'c_data':c_data }
+    context = {'home': '', 'c_data':c_data, 'about': '', 'services': 'active', 'gallery': '', 'contact': ''}
+
     html = 'services.html'
     return render(request,html,context)
 
 
 def GalleryView(request):
     c_data = models.CounterValues.objects.all()
-    data = models.Gallery.objects.all()
-    context = {'data': data, 'home': '', 'about': '', 'services': '', 'gallery': 'active', 'contact': ''}
-    context = {'c_data':c_data}
+    img_data = models.Gallery.objects.all()
+    context = {'img_data': img_data,'c_data':c_data, 'home': '', 'about': '', 'services': '', 'gallery': 'active', 'contact': ''}
     html = 'gallery.html'
     return render(request,html,context)
 

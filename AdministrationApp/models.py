@@ -130,7 +130,7 @@ class Shop(models.Model):
     price = models.CharField(max_length=400, null=True, blank=True)
     offer_price = models.CharField(max_length=400, null=True, blank=True)
     category = models.CharField(max_length=400, null=True, blank=True)
-    snippets = models.CharField(max_length=400, null=True, blank=True)
+    discription = models.CharField(max_length=1000, null=True, blank=True)
     rating = models.CharField(max_length=400, null=True, blank=True)
     submit_date = models.DateField(auto_now_add=True)
 
@@ -162,3 +162,12 @@ class CounterValues(models.Model):
 
     def __str__(self):
       return self.docter_count
+  
+  
+class GoogleMeet(models.Model):
+    name = models.CharField(max_length=400, null=True, blank=True)
+    link = models.CharField(max_length=400, null=True, blank=True)
+    submit_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+      return self.name
