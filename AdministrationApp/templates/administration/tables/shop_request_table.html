@@ -18,49 +18,51 @@
       {% if data %}
          
          {% for item in data %}
-         <div class="col-md-12 mb-4">
-            <div class="card">
-               <div class="card-header bg-dark text-white d-flex justify-content-between">
-                  <span>Roll No. {{ forloop.revcounter  }}</span> 
-                  <span>Name : {{ item.name }}</span> 
-                  <span>Mobile : {{ item.mobile }}</span> 
-                  <span>{{ item.request_date | date:"d-m-Y"}}</span> 
-               </div>
-               <div class="card-body">
-                  <table class="table table-hover">
-                     <thead class="white text-justify">
-                        <tr class="d-flex justify-content-between">
-                           <th>
-                              <h6>Product Id : <span class="text-danger">P{{ item.product_id }}</span></h6>
-                           </th>
-                           <th>
-                              <h6>Price : <span class="text-danger">{{ item.price }}</span></h6>
-                           </th>
+         <div class="col-md-12 mt-3 mb-2">
+            <div class="card mb-6">
+               <div class="card-body ">
+                  <div class="list-group list-group-flush ">           
+                     <span class="d-sm-flex justify-content-between" style="border-bottom: solid 1px #881c724a;">
+                        <span>Shop Request. <b>{{ forloop.revcounter }}</b></span> 
+                        <span>Name : <b>{{ item.name }}</b></span> 
+                        <span>Mobile : <b>{{ item.mobile }}</b></span> 
+                        <span><b>{{ item.request_date | date:"d-m-Y"}}</b></span>
+                     </span>
+                     <a href="#" class="list-group-item list-group-item-action waves-effect">
+                        <span class="d-sm-flex justify-content-between">    
+                           <span>Product Id : <b><span class="text-danger">P{{ item.product_id }}</span></b></span> 
+                        </span>
+                     </a>
+                     <a href="#" class="list-group-item list-group-item-action waves-effect">
+                        <span class="d-sm-flex justify-content-left">    
                            {% if item.offer_price %}
-                           <th>
-                              <h6>Offer Price : <span class="text-danger">{{ item.offer_price }}</span></h6>
-                           </th>
+                              <strike>
+                                 <span>Price : <b><span class="text-danger">{{ item.price }}</span></b></span> 
+                              </strike>
+                              <span style="padding-left: 130px;">Offer Price : <b><span class="text-danger">{{ item.offer_price }}</span></b></span>  
+                           {% else %}
+                                 <span>Price : <b><span class="text-danger">{{ item.price }}</span></b></span> 
                            {% endif %}
-                           <th>
-                              <a href="{% url 'delete_shop_request' item.id %}" class="btn btn-sm btn-danger">Delete</a>
-                           </th>
-                        </tr>
-                        <tr class="d-flex justify-content-between mt-3">
-                           <th>
-                              <h6>Is Read ? : <span class="text-danger">{{ item.is_read }}</span></h6>
-                           </th>
-                           <th>
-                              <h6>Is Delivered ? : <span class="text-danger">{{ item.is_delivered }}</span> </h6>
-                           </th>
-                           <th>
-                              <!-- <a href="#" class="btn btn-sm btn-info">Edit / Read</a> -->
-                           </th>
-                        </tr>
-                     </thead>
-                  </table>
+                        </span>
+                     </a>
+                     <a href="#" class="list-group-item list-group-item-action waves-effect">
+                        <span class="d-sm-flex justify-content-left">    
+                              <span>Is Read ? : <b><span class="text-success">{{ item.is_read }}</span></b></span> 
+                              <span style="padding-left: 130px;">Is Delivered ? : <b><span class="text-success">{{ item.is_delivered }}</span></b></span>  
+                              <span style="padding-left: 130px;">Is Received ? : <b><span class="text-success">False</span></b></span>  
+                        </span>
+                     </a>
+                     <a href="#" class="list-group-item list-group-item-action waves-effect">
+                        <span class="d-sm-flex justify-content-between">    
+                           <a href="{% url 'delete_shop_request' item.id %}" class="text-center btn btn-sm btn-danger">
+                              <b>Delete Shop Request</b>                       
+                           </a>
+                     </a>
+                     
+                  </div>
                </div>
             </div>
-         </div>  
+         </div>
          {% endfor %}
 
       {% else %}

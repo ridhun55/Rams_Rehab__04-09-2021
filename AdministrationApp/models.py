@@ -171,3 +171,21 @@ class GoogleMeet(models.Model):
 
     def __str__(self):
       return self.name
+
+class Todo(models.Model):
+    todo_name = models.CharField(max_length=400, null=True, blank=True)
+    todo_dead_time = models.CharField(max_length=400, null=True, blank=True)
+    todo_subject = models.CharField(max_length=400, null=True, blank=True)
+    todo_body = models.CharField(max_length=400, null=True, blank=True)
+    todo_status = models.CharField(max_length=400, null=True, blank=True)
+    submit_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+      return self.todo_name
+
+class Notes(models.Model):
+    note_body = models.CharField(max_length=400, null=True, blank=True)
+    submit_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+      return self.note_body

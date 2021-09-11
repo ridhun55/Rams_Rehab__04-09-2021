@@ -22,6 +22,8 @@ def DashboardView(request):
     xT = models.Appointment.objects.filter(flag=True).count()
     xF = models.Appointment.objects.filter(flag=False).count()
     msg = models.Messages.objects.all().count()
+    todo_count = models.Todo.objects.all().count()
+    notes_count = models.Notes.objects.all().count()
 
     today_date = datetime.today().date()
     todat1 = models.PatentRegistration.objects.filter(booking_date=today_date,flag=False)
@@ -61,6 +63,8 @@ def DashboardView(request):
         'tomorrowFlag' : tomorrowFlag,
         'today_count' : today_count,
         'tomorrow_count' : tomorrow_count,
+        'todo_count' : todo_count,
+        'notes_count' : notes_count,
         'today_date':datetime.today().date()
     }
     html = 'administration/dashboard.html'
@@ -624,4 +628,125 @@ def DeleteGoogleMeetView(request,id):
     return redirect('add_google_meet')
     context = {}
     html = 'administration/forms/add_google_meet.html'
+    return render(request,html,context)
+
+
+
+
+def AddTodoView(request):
+    data = models.Todo.objects.all().order_by('-id')
+    if request.method == 'POST':
+        todo_name = request.POST.get('todo_name')
+        todo_dead_time = request.POST.get('todo_dead_time')
+        todo_subject = request.POST.get('todo_subject')
+        todo_body = request.POST.get('todo_body')
+        todo_status = request.POST.get('todo_status')
+        submit_date = datetime.today().date()
+
+        obj = models.Todo()
+        obj.todo_name = todo_name
+        obj.todo_dead_time = todo_dead_time
+        obj.todo_subject = todo_subject
+        obj.todo_body = todo_body
+        obj.todo_status = todo_status
+        obj.submit_date = submit_date
+
+        if todo_name == '' or todo_subject == '':
+            return redirect('error')
+        else:
+            obj.save()
+            return redirect('add_todo')
+    context = { 'data' : data, 'today_date':datetime.today().date() }
+    html = 'administration/forms/add_todo_form.html'
+    return render(request,html,context)
+
+
+def EditTodoView(request,id):
+    data = models.Todo.objects.get(id=id)
+    if request.method == 'POST':
+        todo_name = request.POST.get('todo_name')
+        todo_dead_time = request.POST.get('todo_dead_time')
+        todo_subject = request.POST.get('todo_subject')
+        todo_body = request.POST.get('todo_body')
+        todo_status = request.POST.get('todo_status')
+        submit_date = datetime.today().date()
+
+        obj = models.Todo(id=id)
+        obj.todo_name = todo_name
+        obj.todo_dead_time = todo_dead_time
+        obj.todo_subject = todo_subject
+        obj.todo_body = todo_body
+        obj.todo_status = todo_status
+        obj.submit_date = submit_date
+
+        if todo_name == '' or todo_subject == '':
+            return redirect('error')
+        else:
+            obj.save()
+            return redirect('add_todo')
+    context = { 'data' : data, 'today_date':datetime.today().date() }
+    html = 'administration/forms/edit_todo_form.html'
+    return render(request,html,context)
+
+
+
+def EditTodoStatusView(request,id):
+    data = models.Todo.objects.get(id=id)
+    if request.method == 'POST':
+        todo_status = request.POST.get('todo_status')
+
+        obj = models.Todo(id=id)
+        obj.todo_name = data.todo_name
+        obj.todo_dead_time = data.todo_dead_time
+        obj.todo_subject = data.todo_subject
+        obj.todo_body = data.todo_body
+        obj.todo_status = todo_status
+        obj.submit_date = data.submit_date
+
+        if todo_status == '' :
+            return redirect('error')
+        else:
+            obj.save()
+            return redirect('add_todo')
+    context = { 'data' : data, 'today_date':datetime.today().date() }
+    html = 'administration/forms/edit_todo_status.html'
+    return render(request,html,context)
+
+
+def DeleteTodoView(request,id):
+    obj = models.Todo.objects.get(id=id)
+    obj.delete()
+    return redirect('add_todo')
+    context = {}
+    html = 'administration/forms/add_todo_form.html'
+    return render(request,html,context)
+
+
+
+def AddNotesView(request):
+    data = models.Notes.objects.all().order_by('-id')
+    if request.method == 'POST':
+        note_body = request.POST.get('note_body')
+        submit_date = datetime.today().date()
+
+        obj = models.Notes()
+        obj.note_body = note_body
+        obj.submit_date = submit_date
+
+        if note_body == '':
+            return redirect('add_notes')
+        else:
+            obj.save()
+            return redirect('add_notes')
+    context = { 'data' : data, 'today_date':datetime.today().date() }
+    html = 'administration/forms/add_notes.html'
+    return render(request,html,context)
+
+
+def DeleteNotesView(request,id):
+    obj = models.Notes.objects.get(id=id)
+    obj.delete()
+    return redirect('add_notes')
+    context = {}
+    html = 'administration/forms/add_notes.html'
     return render(request,html,context)

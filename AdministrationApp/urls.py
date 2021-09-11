@@ -19,6 +19,8 @@ from AdministrationApp.views import SearchAppointmentTableView
 from AdministrationApp.views import SearchQuickAppointmentTableView
 from AdministrationApp.views import AddCountView, DeleteCountView
 from AdministrationApp.views import AddGoogleMeetView, DeleteGoogleMeetView
+from AdministrationApp.views import AddTodoView, EditTodoView, EditTodoStatusView, DeleteTodoView
+from AdministrationApp.views import AddNotesView, DeleteNotesView
 
 urlpatterns = [
     path('login/', AdministrationLoginView, name='administration_login'),
@@ -76,5 +78,13 @@ urlpatterns = [
     
     path('add_google-meet', AddGoogleMeetView, name="add_google_meet"),
     path('add_google-meet/<int:id>/delete', DeleteGoogleMeetView, name="delete_google_meet"),
+    
+    path('add_todo', AddTodoView, name="add_todo"),
+    path('edit_todo/<int:id>', EditTodoView, name="edit_todo"),
+    path('todo_status_change/<int:id>', EditTodoStatusView, name="todo_status_change"),
+    path('todo_delete/<int:id>/delete', DeleteTodoView, name="todo_delete"),
+    
+    path('add_notes', AddNotesView, name="add_notes"),
+    path('delete_notes/<int:id>/delete', DeleteNotesView, name="delete_notes"),
     
 ]

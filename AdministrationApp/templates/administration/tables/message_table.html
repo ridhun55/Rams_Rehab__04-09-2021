@@ -16,38 +16,39 @@
       </div>
       <div class="row wow fadeIn" >
       {% if data %}
-         
-         {% for item in data %}
-         <div class="col-md-12 mb-4">
-            <div class="card">
-               <div class="card-header bg-primary text-white d-flex justify-content-between">
-                  <span>Message. {{ forloop.revcounter }}</span> 
-                  <span>Name : {{ item.name }}</span> 
-                  <span>{{ item.submit_date | date:"d-m-Y"}}</span> 
-               </div>
-               <div class="card-body">
-                  <table class="table table-hover">
-                     <thead class="blue lighten-4 text-justify">
-                        <tr class="d-flex justify-content-between">
-                           <th>
-                              <h6>Subject : {{ item.subject }}</h6>
-                           </th>
-                           <th>
-                              <h6>Email : {{ item.email }}</h6>
-                           </th>
-                           <th>
-                              <a href="{% url 'delete_message' item.id %}" class="btn btn-sm btn-danger">Delete</a>
-                           </th>
-                        </tr>
-                        <tr>
-                           <th>{{ item.message }}</th>
-                        </tr>
-                     </thead>
-                  </table>
+
+      {% for item in data %}
+         <div class="col-md-12 mt-3 mb-2">
+            <div class="card mb-6">
+               <div class="card-body ">
+                  <div class="list-group list-group-flush ">           
+                     <span class="d-sm-flex justify-content-between" style="border-bottom: solid 1px #881c724a;">
+                        <span>Message. <b>{{ forloop.revcounter }}</b></span> 
+                        <span>Name : <b>{{ item.name }}</b></span> 
+                        
+                        <span><b>{{ item.submit_date | date:"d-m-Y"}}</b></span>
+                     </span>
+                     <a href="#" class="list-group-item list-group-item-action waves-effect">
+                        <span class="d-sm-flex justify-content-between">
+                           
+                           <span>Sub : <b>{{ item.subject }}</b></span> 
+                           <span>Email : <b>{{ item.email }}</b></span>  
+                        </span>
+                     </a>
+                     <a href="#" class="list-group-item list-group-item-action waves-effect">
+                            <span>{{ item.message }}</span>
+                     </a>
+                     <a href="{% url 'delete_message' item.id %}" class="text-center btn btn-sm btn-danger list-group-item list-group-item-action waves-effect">
+                            Delete Message
+                     </a>
+                     
+                  </div>
                </div>
             </div>
-         </div>  
-         {% endfor %}
+         </div>
+      {% endfor %}
+         
+  
 
       {% else %}
       <div class="col-md-12 mb-4">

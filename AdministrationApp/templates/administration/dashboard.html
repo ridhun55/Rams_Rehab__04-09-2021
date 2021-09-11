@@ -57,6 +57,25 @@
                </div>
             </div>
          </div>
+
+         <div class="col-md-4">
+            <div class="card mb-4">
+               <div class="card-body">
+                  <div class="list-group list-group-flush">           
+                     <span>Notes</span>
+                     <a href="{% url 'add_todo' %}" class="list-group-item list-group-item-action waves-effect">
+                     <span class="badge badge-danger badge-pill pull-right">{{ todo_count }}
+                     </span> Todo List
+                     </a>
+                     <a href="{% url 'add_notes' %}" class="list-group-item list-group-item-action waves-effect">
+                     <span class="badge badge-primary badge-pill pull-right">{{ notes_count }}
+                     </span> Notes / Reference
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
          <div class="col-md-4">
             <div class="card mb-4">
                <div class="card-body">
@@ -91,6 +110,7 @@
                </div>
             </div>
          </div>
+         
       </div>
       {% else %}
       <div class="card mb-4 wow fadeIn">
