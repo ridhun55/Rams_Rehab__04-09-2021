@@ -617,7 +617,6 @@ def AddGoogleMeetView(request):
             obj.save()
             return redirect('add_google_meet')
     context = { 'data' : data, 'today_date':datetime.today().date() }
-    print(data)
     html = 'administration/forms/add_google_meet.html'
     return render(request,html,context)
 
