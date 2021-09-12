@@ -1,7 +1,8 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
    <div class="container-fluid">
       <a class="navbar-brand waves-effect" href="{% url 'administration_home' %}">
-      <strong class="blue-text">Ram's Rehab</strong>
+      <span style="color: #000000;font-family: 'Play', sans-serif;font-weight: 600;">
+         <b>Ram's Rehab</b></span>
       </a>
       <!-- Collapse -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -35,27 +36,30 @@
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
                  Website Settings
                </a>
-               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+               <ul style="border: solid 1px #00000054;border-top: solid 1px #ffffff54;" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <li class="nav-item mx-1">
-                     <a class="nav-link waves-effect" href="{% url 'add_doctors_profile' %}">Add Doctors Profile</a>
+                     <a class="nav-link waves-effect" href="{% url 'add_doctors_profile' %}"><b>Add Doctors Profile</b></a>
                   </li>
                   <li class="nav-item mx-1">
-                     <a class="dropdown-item waves-effect" href="{% url 'nurse_register' %}">Nurse / Staff Registration</a>
+                     <a class="dropdown-item waves-effect" href="{% url 'nurse_register' %}"><b>Nurse / Staff Registration</b></a>
                   </li>
                   <li class="nav-item mx-1">
-                     <a class="nav-link waves-effect" href="{% url 'add_gallery_image' %}">Add Gallery Images</a>
+                     <a class="nav-link waves-effect" href="{% url 'add_gallery_image' %}"><b>Add Gallery Images</b></a>
                   </li>
                   <li class="nav-item mx-1">
-                     <a class="nav-link waves-effect" href="{% url 'add_shop_item' %}">Add Shop Items</a>
+                     <a class="nav-link waves-effect" href="{% url 'add_shop_item' %}"><b>Add Shop Items</b></a>
                   </li>
                   <li class="nav-item mx-1">
-                     <a class="nav-link waves-effect" href="{% url 'add_feedback' %}">Add Feedback</a>
+                     <a class="nav-link waves-effect" href="{% url 'add_feedback' %}"><b>Add Feedback</b></a>
                   </li>
                   <li class="nav-item mx-1">
-                     <a class="nav-link waves-effect" href="{% url 'add_count' %}">Add Counter Value</a>
+                     <a class="nav-link waves-effect" href="{% url 'add_count' %}"><b>Add Counter Value</b></a>
                   </li>
                   <li class="nav-item mx-1">
-                     <a class="nav-link waves-effect" href="{% url 'add_google_meet' %}">Add Google Meet Link</a>
+                     <a class="nav-link waves-effect" href="{% url 'add_google_meet' %}"><b>Add Google Meet Link</b></a>
+                  </li>
+                  <li class="nav-item mx-1">
+                     <a class="nav-link waves-effect" href="{% url 'add_notes' %}" target="_blank"><b>Add Notes / Reference</b></a>
                   </li>
                </ul>
             </li>

@@ -43,11 +43,16 @@
                      <label class="form-label" for="typeText2">Awards <span style="color: red;">*</span></label>
                      <input name="awards_count" value="{{ data.awards_count }}" type="text" id="typeText2" class="form-control" />
                   </div>
+                  <div class="form-outline mt-2 d-flex justify-content-center">
+                     <button type="submit" class="btn btn-sm text-white btn-primary"><b>Submit</b> </button>
+                     <a href="{% url 'administration_home' %}" type="button" class="btn text-white btn-sm btn-primary"><b>Cancel</b></a>
+                  </div> 
                   
                </div>
             </div>
          </div>
          </div>
+
          <div class="col-md-6 ">
             {% for i in data %}
             <div class="card mb-4">
@@ -87,12 +92,7 @@
             {% endfor %}
             </div>
          
-         <div class="col-md-8 d-flex  justify-content-center mx-auto" >
-            <div class=" mb-5">
-               <button type="submit" class="btn btn-primary">Submit </button>
-               <a href="{% url 'administration_home' %}" type="button" class="btn btn-primary">Cancel</a>
-            </div>
-         </div>
+
 
     </div>
    </form>

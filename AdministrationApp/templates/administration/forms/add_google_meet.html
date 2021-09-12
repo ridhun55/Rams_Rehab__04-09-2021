@@ -22,9 +22,9 @@
       <div class="row wow fadeIn">
    
          
-            <div class="col-md-6 ">
+            <div class="col-md-8 mx-auto">
                <div class="card mb-4 ">
-                  <div class="card-header text-white bg-primary">Add Google Meet Link</div>
+                  <div class="card-header text-dark bg-warning"><b>Add Google Meet Link</b></div>
                   <div class="card-body">
                      <div class="list-group list-group-flush">
                         <div class="form-outline">
@@ -34,18 +34,17 @@
                         <div class="form-outline mt-2">
                            <label class="form-label" for="typeText2">Meeting Link <span style="color: red;">*</span></label>
                            <input name="link"  type="text" id="typeText2" class="form-control" />
-                        </div>                  
+                        </div>
+                        <div class="form-outline mt-2 d-flex justify-content-center">
+                           <button type="submit" class="btn btn-sm text-dark btn-warning"><b>Submit</b> </button>
+                           <a href="{% url 'administration_home' %}" type="button" class="btn text-dark btn-sm btn-warning"><b>Cancel</b></a>
+                        </div>               
                      </div>
                   </div>
                </div>
             </div>
 
-            <div class="col-md-8 d-flex  justify-content-center mx-auto" >
-               <div class=" mb-5">
-                  <button type="submit" class="btn btn-primary">Submit </button>
-                  <a href="{% url 'administration_home' %}" type="button" class="btn btn-primary">Cancel</a>
-               </div>
-            </div>
+            
 
       </div>
       </form>
