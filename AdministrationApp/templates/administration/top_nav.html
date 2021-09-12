@@ -70,18 +70,19 @@
                   </a>
                </li>
             {% endif %}
+          
          </ul>
          <!-- Right -->
          <ul class="navbar-nav nav-flex-icons">
             {% if user.is_authenticated %}
             <li class="nav-item">
-               <a href="{% url 'logout' %}" class="nav-link border border-light rounded waves-effect">
+               <a href="{% url 'logout' %}" class="nav-link btn btn-sm btn-white text-dark rounded waves-effect">
                <i class="fas fa-sign-out-alt mr-1"></i>Logout
                </a>
             </li>
             {% else %}
             <li class="nav-item">
-               <a href="{% url 'administration_login' %}" class="nav-link border border-light rounded waves-effect mr-2">
+               <a href="{% url 'administration_login' %}" class="nav-link btn btn-sm btn-white text-dark rounded waves-effect mr-2">
                <i class="fas fa-sign-in-alt mr-1"></i>Login
                </a>
             </li>

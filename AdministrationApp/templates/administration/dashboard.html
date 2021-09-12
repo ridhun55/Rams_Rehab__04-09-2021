@@ -13,7 +13,16 @@
                <span>Ram's Rehab Dashboard</span>
                <span></span>
             </h4>
-            {% include 'administration/patient_searchbox.html'%}
+            {% if user.is_superuser %}
+            <span class="mb-2 mb-sm-0 pt-1">
+               Login Profile : <span class="pr-3 text-danger" style="text-transform: uppercase;"><b>Administrator</b></span>
+            </span>
+            {% else %}
+            <span class="mb-2 mb-sm-0 pt-1">
+               Login Profile : <span class="pr-3 text-danger" style="text-transform: uppercase;"><b>{{ user.first_name | capfirst }} {{ user.last_name | capfirst }}</b></span>
+            </span>
+            {% endif %}
+           
          </div>
       </div>
       <div class="row wow fadeIn">

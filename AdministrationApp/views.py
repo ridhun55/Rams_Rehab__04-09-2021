@@ -17,6 +17,8 @@ def ErrorSubmit(request):
 
 @login_required(login_url='administration_login')
 def DashboardView(request):
+    user = request.user
+    print(user)
     yT = models.QuickAppointment.objects.filter(flag=True).count()
     yF = models.QuickAppointment.objects.filter(flag=False).count()
     xT = models.Appointment.objects.filter(flag=True).count()
@@ -67,7 +69,9 @@ def DashboardView(request):
         'todo_count' : todo_count,
         'notes_count' : notes_count,
         'google_meet_count' : google_meet_count,
+        'user':user,
         'today_date':datetime.today().date()
+        
     }
     html = 'administration/dashboard.html'
     return render(request,html,context)
