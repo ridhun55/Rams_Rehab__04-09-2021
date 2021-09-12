@@ -24,6 +24,7 @@ def DashboardView(request):
     msg = models.Messages.objects.all().count()
     todo_count = models.Todo.objects.all().count()
     notes_count = models.Notes.objects.all().count()
+    google_meet_count = models.GoogleMeet.objects.all().count()
 
     today_date = datetime.today().date()
     todat1 = models.PatentRegistration.objects.filter(booking_date=today_date,flag=False)
@@ -65,6 +66,7 @@ def DashboardView(request):
         'tomorrow_count' : tomorrow_count,
         'todo_count' : todo_count,
         'notes_count' : notes_count,
+        'google_meet_count' : google_meet_count,
         'today_date':datetime.today().date()
     }
     html = 'administration/dashboard.html'
