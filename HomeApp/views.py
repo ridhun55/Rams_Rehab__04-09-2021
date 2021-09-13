@@ -84,6 +84,7 @@ def ShopDetailView(request,id):
         obj.request_date = request_date
         obj.price = data.price
         obj.offer_price = data.offer_price
+        obj.shop_status = "New Request"
         obj.is_read = False
         obj.is_delivered = False
         if mobile == '':

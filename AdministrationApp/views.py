@@ -288,6 +288,32 @@ def ShopRequestTableView(request):
     return render(request,html,context)
 
 
+def ShopRequestStatusChangeView(request,id):
+    data = models.ShopRequest.objects.get(id=id)
+    if request.method == 'POST':
+        shop_status = request.POST.get('shop_status')
+
+        obj = models.ShopRequest(id=id)
+        obj.name = data.name
+        obj.mobile = data.mobile
+        obj.product_id = data.product_id
+        obj.price = data.price
+        obj.is_read = data.is_read
+        obj.is_delivered = data.is_delivered
+        obj.shop_status = shop_status
+        obj.request_date = data.request_date
+
+
+        if shop_status == '':
+            return redirect('error')
+        else:
+            obj.save()
+            return redirect('shop_request')
+    context = { 'data' : data, 'today_date':datetime.today().date() }
+    html = 'administration/tables/shop_request_status_change.html'
+    return render(request,html,context)
+
+
 def DeleteShopRequestView(request,id):
     data = models.ShopRequest.objects.get(id=id)
     data.delete()

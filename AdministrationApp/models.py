@@ -144,6 +144,7 @@ class ShopRequest(models.Model):
     product_id = models.CharField(max_length=400, null=True, blank=True)
     price = models.CharField(max_length=400, null=True, blank=True)
     offer_price = models.CharField(max_length=400, null=True, blank=True)
+    shop_status = models.CharField(max_length=400, null=True, blank=True)
     request_date = models.DateField(auto_now_add=True)
     is_read = models.BooleanField(default=False,null=True,blank=True)
     is_delivered = models.BooleanField(default=False,null=True,blank=True)

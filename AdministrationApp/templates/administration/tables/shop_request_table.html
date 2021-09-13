@@ -48,17 +48,37 @@
                      <a href="#" class="list-group-item list-group-item-action waves-effect">
                         <span class="d-sm-flex justify-content-left">    
                               <span>Is Read ? : <b><span class="text-success">{{ item.is_read }}</span></b></span> 
-                              <span style="padding-left: 130px;">Is Delivered ? : <b><span class="text-success">{{ item.is_delivered }}</span></b></span>  
-                              <span style="padding-left: 130px;">Is Received ? : <b><span class="text-success">False</span></b></span>  
+                              <span style="padding-left: 130px;">Order Status : <b>
+                                 {% if item.shop_status == "Delivered" %}
+                                 <span class="text-primary">{{ item.shop_status }}</span>
+                                 {% endif %}
+                                 {% if item.shop_status == "Received Successfully" %}
+                                 <span class="text-success">{{ item.shop_status }}</span>
+                                 {% endif %}
+                                 {% if item.shop_status == "In Pending" %}
+                                 <span class="text-danger">{{ item.shop_status }}</span>
+                                 {% endif %}
+                                 {% if item.shop_status == "New Request" %}
+                                 <span class="text-warning">{{ item.shop_status }}</span>
+                                 {% endif %}
+                              </b></span>    
                         </span>
                      </a>
+                     
                      <a href="#" class="list-group-item list-group-item-action waves-effect">
-                        <span class="d-sm-flex justify-content-between">    
+                        <span class="d-sm-flex justify-content-between"> 
+                           {% if user.is_superuser %}   
                            <a href="{% url 'delete_shop_request' item.id %}" class="text-center btn btn-sm btn-danger">
                               <b>Delete Shop Request</b>                       
                            </a>
+                           {% endif %}
+                           {% if user.is_staff %}
+                           <a href="{% url 'update_shop_request' item.id %}" class="text-center btn btn-sm btn-primary">
+                              <b>Update Status</b>                       
+                           </a>
+                           {% endif %}
                      </a>
-                     
+
                   </div>
                </div>
             </div>

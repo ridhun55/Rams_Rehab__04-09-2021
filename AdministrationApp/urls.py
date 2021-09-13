@@ -10,7 +10,7 @@ from AdministrationApp.views import AdministrationLoginView
 from AdministrationApp.views import AddGalleryImage, DeleteGalleryImage
 from AdministrationApp.views import AddFeedbackView, DeleteFeedbackView
 from AdministrationApp.views import AddDoctorsProfileView, DeleteDoctorsProfileView
-from AdministrationApp.views import ShopRequestTableView, DeleteShopRequestView
+from AdministrationApp.views import ShopRequestTableView, ShopRequestStatusChangeView, DeleteShopRequestView
 from AdministrationApp.views import MessageTableView, DeleteMessageView
 from AdministrationApp.views import SubscribersTableView, DeleteSubscribersView
 from AdministrationApp.views import AddShopItemView, DeleteShopItemView
@@ -41,6 +41,7 @@ urlpatterns = [
     path('appointment/<int:id>/delete/', AppointmentDeleteView, name='appointment_delete'),
 
     path('shop_request/', ShopRequestTableView, name='shop_request'),
+    path('update_shop_request/<int:id>', ShopRequestStatusChangeView, name='update_shop_request'),
     path('shop_request/<int:id>/delete', DeleteShopRequestView, name='delete_shop_request'),
     
     path('message/', MessageTableView, name='message_table'),
