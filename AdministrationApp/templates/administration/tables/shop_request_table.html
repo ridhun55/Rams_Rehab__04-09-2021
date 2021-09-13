@@ -49,17 +49,20 @@
                         <span class="d-sm-flex justify-content-left">    
                               <span>Is Read ? : <b><span class="text-success">{{ item.is_read }}</span></b></span> 
                               <span style="padding-left: 130px;">Order Status : <b>
-                                 {% if item.shop_status == "Delivered" %}
+                                 {% if item.shop_status == "Order Shipped" %}
                                  <span class="text-primary">{{ item.shop_status }}</span>
                                  {% endif %}
-                                 {% if item.shop_status == "Received Successfully" %}
+                                 {% if item.shop_status == "Delivered Successfully" %}
                                  <span class="text-success">{{ item.shop_status }}</span>
                                  {% endif %}
-                                 {% if item.shop_status == "In Pending" %}
+                                 {% if item.shop_status == "Order In Pending" %}
                                  <span class="text-danger">{{ item.shop_status }}</span>
                                  {% endif %}
                                  {% if item.shop_status == "New Request" %}
                                  <span class="text-warning">{{ item.shop_status }}</span>
+                                 {% endif %}
+                                 {% if item.shop_status == "Not Shipped" %}
+                                 <span class="text-dark">{{ item.shop_status }}</span>
                                  {% endif %}
                               </b></span>    
                         </span>
