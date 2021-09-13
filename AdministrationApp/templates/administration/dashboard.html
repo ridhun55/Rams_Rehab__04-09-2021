@@ -89,19 +89,21 @@
             <div class="card mb-4">
                <div class="card-body">
                   <div class="list-group list-group-flush">           
-                     <span>Login Permissions</span>
-                     <a href="{% url 'nurse_register' %}" class="list-group-item list-group-item-action waves-effect">
-                     <span class="badge badge-danger badge-pill pull-right">5
-                     </span> Nurse
+                     <span>Shop Request</span>
+                     <a href="{% url 'shop_request' %}" class="list-group-item list-group-item-action waves-effect" style="padding-right: 0px;">
+                     <span class="badge badge-secondary badge-pill pull-right">{{ new_shop_count }}
+                     </span> New Request
                      </a>
-                     <a href="{% url 'nurse_register' %}" class="list-group-item list-group-item-action waves-effect">
-                     <span class="badge badge-primary badge-pill pull-right">14
-                     </span> Blogger
+                     <a href="{% url 'shop_request' %}" class="list-group-item list-group-item-action waves-effect">
+                        <span class="badge badge-danger badge-pill pull-right">{{ total_shop_count }}
+                        </span> Total Request
                      </a>
                   </div>
                </div>
             </div>
          </div>
+         
+         
          <div class="col-md-4">
             <div class="card mb-4">
                <div class="card-body">
@@ -125,7 +127,7 @@
                   <div class="list-group list-group-flush">           
                      <span>Google Meet</span>
                      <a href="{% url 'add_google_meet' %}" class="list-group-item list-group-item-action waves-effect" style="padding-right: 0px;">
-                     <span class="badge badge-warning badge-pill pull-right">{{ google_meet_count }}
+                     <span class="badge badge-secondary badge-pill pull-right">{{ google_meet_count }}
                      </span> Google Meet Links
                      </a>
                      <a href="{% url 'add_google_meet' %}" class="list-group-item list-group-item-action waves-effect">
@@ -136,6 +138,24 @@
                </div>
             </div>
          </div>
+         <div class="col-md-4">
+            <div class="card mb-4">
+               <div class="card-body">
+                  <div class="list-group list-group-flush">           
+                     <span>Login Permissions</span>
+                     <a href="{% url 'nurse_register' %}" class="list-group-item list-group-item-action waves-effect">
+                     <span class="badge badge-danger badge-pill pull-right">5
+                     </span> Nurse
+                     </a>
+                     <a href="{% url 'nurse_register' %}" class="list-group-item list-group-item-action waves-effect">
+                     <span class="badge badge-primary badge-pill pull-right">14
+                     </span> Blogger
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
          
       </div>
       {% else %}

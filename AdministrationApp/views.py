@@ -18,7 +18,6 @@ def ErrorSubmit(request):
 @login_required(login_url='administration_login')
 def DashboardView(request):
     user = request.user
-    print(user)
     yT = models.QuickAppointment.objects.filter(flag=True).count()
     yF = models.QuickAppointment.objects.filter(flag=False).count()
     xT = models.Appointment.objects.filter(flag=True).count()
@@ -27,6 +26,8 @@ def DashboardView(request):
     todo_count = models.Todo.objects.all().count()
     notes_count = models.Notes.objects.all().count()
     google_meet_count = models.GoogleMeet.objects.all().count()
+    total_shop_count = models.ShopRequest.objects.all().count()
+    new_shop_count = models.ShopRequest.objects.filter(shop_status="New Request").count()
 
     today_date = datetime.today().date()
     todat1 = models.PatentRegistration.objects.filter(booking_date=today_date,flag=False)
@@ -69,6 +70,8 @@ def DashboardView(request):
         'todo_count' : todo_count,
         'notes_count' : notes_count,
         'google_meet_count' : google_meet_count,
+        'new_shop_count':new_shop_count,
+        'total_shop_count':total_shop_count,
         'user':user,
         'today_date':datetime.today().date()
         
@@ -616,7 +619,6 @@ def AddCountView(request):
             obj.save()
             return redirect('add_count')
     context = { 'data' : data, 'today_date':datetime.today().date() }
-    print(data)
     html = 'administration/forms/add_count.html'
     return render(request,html,context)
 
