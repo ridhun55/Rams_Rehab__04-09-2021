@@ -139,7 +139,8 @@
       {% if category_posts %}
          <div class="section-title">
           <h2>Category : {{ cats }}</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>If you are looking for more interesting and informative knowledge about your health.
+            Just go through our blogs. </p>
         <br>
          </div>
 
@@ -149,7 +150,9 @@
          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="card">
                <a href="{% url 'article' post.pk %}">
-                  <img class="card-img-top" src="{% static 'assets/img/services/ems.jpg' %}" alt="Card image cap">
+               {% if post.header_image %}
+               <img class="card-img-top" src="{{ post.header_image.url }}" alt="image of {{ post.title }}">
+               {% endif %}
                </a>
                <div class="date-bg"></div>
                <div class="cat_date">
