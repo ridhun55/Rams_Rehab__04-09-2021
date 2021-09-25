@@ -5,7 +5,7 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-1219nd*vwk=bjyl)q*@)u68b+evg!q*ng#+muh7xx8d4=znum7'
+SECRET_KEY = '@)m1$$)#zy$!k!7#jldvqgryp@0%#8q9&k^ukfnff2t47z2_96'
 
 DEBUG = True
 
@@ -56,21 +56,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MyProject.wsgi.application'
 
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rams_rehab',
-        'USER':'root',
-        'PASSWORD':'',
-        'HOST':'localhost'
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ram_django',
+        'USER': 'postgres',
+        'PASSWORD': 'Ov:[W#9[c_k%',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
