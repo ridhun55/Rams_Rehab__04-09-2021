@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate,login,logout
 from datetime import datetime
 from AdministrationApp import models
 
-# ==============================================================
 
 def HomeView(request):
     data = models.DoctorsProfile.objects.all()
