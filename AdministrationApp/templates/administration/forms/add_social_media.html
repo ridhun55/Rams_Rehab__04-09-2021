@@ -12,7 +12,7 @@
     <div class="card mb-4 wow fadeIn">
         <div class="card-body d-sm-flex justify-content-between">
           <h4 class="mb-2 mb-sm-0 pt-1">
-              <span>Add Counter Values</span>
+              <span>Add Social Media URLs</span>
           </h4>
         </div>
     </div>
@@ -24,24 +24,28 @@
       
          <div class="col-md-6 ">
          <div class="card mb-4 ">
-            <div class="card-header text-white bg-primary">Add Counter Values</div>
+            <div class="card-header text-white bg-primary">Add Social Media URLs</div>
             <div class="card-body">
                <div class="list-group list-group-flush">
                   <div class="form-outline">
-                     <label class="form-label" for="typeText1">Docters <span style="color: red;">*</span></label>
-                     <input name="docter_count" value="{{ data.docter_count }}" type="text" id="typeText1" class="form-control" />
+                     <label class="form-label" for="typeText1">Twitter URL </label>
+                     <input name="twitter" value="{{ data.twitter }}" type="text" id="typeText1" class="form-control" />
                   </div>
                   <div class="form-outline mt-2">
-                     <label class="form-label" for="typeText2">Departments <span style="color: red;">*</span></label>
-                     <input name="department_count" value="{{ data.department_count }}" type="text" id="typeText2" class="form-control" />
+                     <label class="form-label" for="typeText2">Facebook URL </label>
+                     <input name="facebook" value="{{ data.facebook }}" type="text" id="typeText2" class="form-control" />
                   </div>
                   <div class="form-outline mt-2">
-                     <label class="form-label" for="typeText2">Reserch Labs <span style="color: red;">*</span></label>
-                     <input name="reserchlab_count" value="{{ data.reserchlab_count }}" type="text" id="typeText2" class="form-control" />
+                     <label class="form-label" for="typeText2">Instagram URL </label>
+                     <input name="instagram" value="{{ data.instagram }}" type="text" id="typeText2" class="form-control" />
                   </div>
                   <div class="form-outline mt-2">
-                     <label class="form-label" for="typeText2">Awards <span style="color: red;">*</span></label>
-                     <input name="awards_count" value="{{ data.awards_count }}" type="text" id="typeText2" class="form-control" />
+                     <label class="form-label" for="typeText2">Google Plus URL </label>
+                     <input name="google_plus" value="{{ data.google_plus }}" type="text" id="typeText2" class="form-control" />
+                  </div>
+                  <div class="form-outline mt-2">
+                     <label class="form-label" for="typeText2">Linkedin URL </label>
+                     <input name="linkedin" value="{{ data.linkedin }}" type="text" id="typeText2" class="form-control" />
                   </div>
                   <div class="form-outline mt-2 d-flex justify-content-center">
                      <button type="submit" class="btn btn-sm text-white btn-primary"><b>Submit</b> </button>
@@ -59,32 +63,37 @@
                <div class="card-body">
                   <div class="list-group list-group-flush">
                      <span class="d-flex justify-content-end">
-                        <a href="{% url 'delete_count' i.id %}"><span class="badge badge-danger badge-pill pull-right">Delete</span></a>
+                        <a href="{% url 'delete_social_media' i.id %}"><span class="badge badge-danger badge-pill pull-right">Delete</span></a>
                      </span>
                      <span class="d-flex justify-content-between">
-                        <span>Current Counter Values</span> 
+                        <span>Current Social Media URLs</span> 
                         <small style="padding-right: 10px;">{{ i.submit_date | date:'d / m / Y' }}</small>
                      </span> 
                      <span class="list-group-item list-group-item-action waves-effect">
-                        <span class="badge badge-success badge-pill pull-right">{{ i.docter_count }}  
+                        <span class="badge badge-success badge-pill pull-right">t  
                         </span> &nbsp;
-                        Docters
+                        Twitter URL : <a target="_blank" href="{{ i.twitter }}">{{ i.twitter }}</a>
                      </span>
 
                      <span class="list-group-item list-group-item-action waves-effect">
-                        <span class="badge badge-success badge-pill pull-right">{{ i.department_count }} 
+                        <span class="badge badge-success badge-pill pull-right">f 
                         </span> &nbsp;
-                        Departments 
+                        Facebook URL : <a target="_blank" href="{{ i.facebook }}">{{ i.facebook }}</a>
                      </span>
                      <span class="list-group-item list-group-item-action waves-effect">
-                        <span class="badge badge-success badge-pill pull-right">{{ i.reserchlab_count }} 
+                        <span class="badge badge-success badge-pill pull-right">i 
                         </span> &nbsp;
-                        Reserch Labs 
+                        Instagram URL : <a target="_blank" href="{{ i.instagram }}">{{ i.instagram }}</a>
                      </span>
                      <span class="list-group-item list-group-item-action waves-effect">
-                        <span class="badge badge-success badge-pill pull-right">{{ i.awards_count }} 
-                        </span> &nbsp
-                        Awards  
+                        <span class="badge badge-success badge-pill pull-right">g
+                        </span> &nbsp;
+                        Google Plus URL : <a target="_blank" href="{{ i.google_plus }}">{{ i.google_plus }}</a>
+                     </span>
+                     <span class="list-group-item list-group-item-action waves-effect">
+                        <span class="badge badge-success badge-pill pull-right">l
+                        </span> &nbsp;
+                        Linkedin URL : <a target="_blank" href="{{ i.linkedin }}">{{ i.linkedin }}</a>
                      </span>
                   </div>
                </div>
@@ -104,7 +113,7 @@
          </h4>
          <h5 class="my-2 mb-sm-0 pt-1 text-danger">
             <br>
-            <span>Only admin can change Counter values</span><br><br>
+            <span>Only admin can change Social Media Links</span><br><br>
             <p>- Please Contact Admin -</p>
          </h5>
       </div>

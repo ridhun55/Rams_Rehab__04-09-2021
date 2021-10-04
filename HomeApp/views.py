@@ -35,43 +35,98 @@ def HomeView(request):
             return redirect('success')
 
 
-    context = {'feedback_data':feedback_data, 'data': data, 'home':'active','about':'','services':'','gallery':'','contact':''}
+    context = {
+        'feedback_data':feedback_data,
+        'data': data, 'home':'active',
+        'about':'','services':'','gallery':'','contact':'',
+        'social':models.SocialMedia.objects.all()
+        }
     html = 'index.html'
     return render(request,html,context)
 
 
 def AboutView(request):
     c_data = models.CounterValues.objects.all()
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
     context = {'home': '', 'about': 'active', 'services': '', 'gallery': '', 'contact': ''}
     context = {'c_data':c_data }
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'about.html'
     return render(request,html,context)
 
 
 def ServicesView(request):
     c_data = models.CounterValues.objects.all()
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
     context = {'home': '', 'c_data':c_data, 'about': '', 'services': 'active', 'gallery': '', 'contact': ''}
-
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'services.html'
     return render(request,html,context)
 
 
 def GalleryView(request):
     c_data = models.CounterValues.objects.all()
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
     img_data = models.Gallery.objects.all()
     context = {'img_data': img_data,'c_data':c_data, 'home': '', 'about': '', 'services': '', 'gallery': 'active', 'contact': ''}
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'gallery.html'
     return render(request,html,context)
 
 
 def ShopView(request):
     data = models.Shop.objects.all()
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
     context = {'data': data, 'home': '', 'about': '', 'services': '', 'gallery': 'active', 'contact': ''}
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'shop.html'
     return render(request,html,context)
 
+
+
 def ShopDetailView(request,id):
-    data = models.Shop.objects.get(id=id)
+    try:
+        data = models.Shop.objects.get(id=id)
+    except models.Shop.DoesNotExist:
+        return render(request,'404.html')
+    
+    # data = models.Shop.objects.get(id=id)
     if request.method == 'POST':
         name = request.POST.get('name')
         mobile = request.POST.get('mobile')
@@ -92,7 +147,20 @@ def ShopDetailView(request,id):
         else:
             obj.save()
             return redirect('success')
+        
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
     context = {'data': data, 'home': '', 'about': '', 'services': '', 'gallery': 'active', 'contact': ''}
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'shop_detail.html'
     return render(request,html,context)
 # ==============================================================
@@ -115,7 +183,20 @@ def ContactView(request):
         else:
             obj.save()
             return redirect('success')
+    
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
     context = {'home': '', 'about': '', 'services': '', 'gallery': '', 'contact': 'active'}
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'contact.html'
     return render(request,html,context)
 
@@ -145,7 +226,19 @@ def AppointmentView(request):
         else:
             obj.save()
             return redirect('success')
-    context = {}
+        
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'make_an_appointment.html'
     return render(request,html,context)
 
@@ -153,49 +246,148 @@ def AppointmentView(request):
 # ======== MigraineView ======================================
 
 def MigraineView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'Migraine.html'
     return render(request,html,context)
 
 # ======== MusculoskeletalView ======================================
 
 def MusculoskeletalView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'Musculoskeletal.html'
     return render(request,html,context)
 
 def ElbowView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'notes/elbow.html'
     return render(request,html,context)
 
 def HipView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'notes/hip.html'
     return render(request,html,context)
 
 def AnkleView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'notes/ankle.html'
     return render(request,html,context)
 
 def ShoulderView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'notes/shoulder.html'
     return render(request,html,context)
 
 def WristView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'notes/wrist.html'
     return render(request,html,context)
 
 def HeadNeckView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'notes/head_neck.html'
     return render(request,html,context)
 
 def LumbarSpineView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'notes/lumbar_spine.html'
     return render(request,html,context)
 
@@ -203,56 +395,122 @@ def LumbarSpineView(request):
 # =========================================
 
 def NeurologyView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'Neurology.html'
     return render(request,html,context)
 
 def NeurologyNoteView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'notes/neurology_note.html'
     return render(request,html,context)
 
 # ==========================================
 
 def PediatricsView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'Pediatrics.html'
     return render(request,html,context)
 
 def PaediatricNoteView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'notes/paediatric_note.html'
     return render(request,html,context)
 
 def MonthlyBabyMilestoneView(request):
-    context = {}
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'notes/monthly_baby_milestone.html'
     return render(request,html,context)
 
 # ==============================================================
 
 def SuccessView(request):
-    context = {}
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'success.html'
     return render(request,html,context)
 
 
 def ErrorView(request):
-    context = {}
+    context = {'social':models.SocialMedia.objects.all()}
     html = 'error.html'
     return render(request,html,context)
 
 def SearchProductsView(request):
-   if request.method == 'POST':
-      searched = request.POST['searched']
-      search_post = models.Shop.objects.filter(item__icontains=searched)
-      search_category = models.Shop.objects.filter(category__icontains=searched)
-      
-      return render(request, 'search_products.html', {
-         'searched':searched, 
-         'search_post':search_post, 
-         'search_category':search_category
-         })
-   else:    
-      return render(request, 'search_products.html', {}) 
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        search_post = models.Shop.objects.filter(item__icontains=searched)
+        search_category = models.Shop.objects.filter(category__icontains=searched)
+        
+        return render(request, 'search_products.html', {
+            'searched':searched, 
+            'search_post':search_post, 
+            'search_category':search_category
+            })
+    else:    
+        return render(request, 'search_products.html', {}) 
 

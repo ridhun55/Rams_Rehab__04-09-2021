@@ -144,12 +144,29 @@
                   <div class="list-group list-group-flush">           
                      <span>Login Permissions</span>
                      <a href="{% url 'nurse_register' %}" class="list-group-item list-group-item-action waves-effect">
-                     <span class="badge badge-danger badge-pill pull-right">5
+                     <span class="badge badge-danger badge-pill pull-right">{{staff_count}}
                      </span> Nurse
                      </a>
                      <a href="{% url 'nurse_register' %}" class="list-group-item list-group-item-action waves-effect">
-                     <span class="badge badge-primary badge-pill pull-right">14
+                     <span class="badge badge-primary badge-pill pull-right">{{blogger_count}}
                      </span> Blogger
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="card mb-4">
+               <div class="card-body">
+                  <div class="list-group list-group-flush">           
+                     <span>Account Details</span>
+                     <a href="{% url 'add_account' %}" class="list-group-item list-group-item-action waves-effect">
+                     <span class="badge badge-danger badge-pill pull-right">{{staff_count}}
+                     </span> Income
+                     </a>
+                     <a href="{% url 'add_account' %}" class="list-group-item list-group-item-action waves-effect">
+                     <span class="badge badge-primary badge-pill pull-right">{{blogger_count}}
+                     </span> Expanse
                      </a>
                   </div>
                </div>

@@ -9,6 +9,9 @@ from django.views.generic import DetailView, CreateView
 from LoginApp.forms import SignUpForm
 from django.urls import reverse_lazy
 from AdministrationApp.forms import GalleryForm, DoctorsForm, FeedbackForm, ShopForm
+from datetime import datetime
+from django.http import HttpResponse
+
 
 def ErrorSubmit(request):
     html = 'administration/error.html'
@@ -16,7 +19,7 @@ def ErrorSubmit(request):
 
 
 @login_required(login_url='administration_login')
-def DashboardView(request):
+def DashboardView(request): 
     user = request.user
     yT = models.QuickAppointment.objects.filter(flag=True).count()
     yF = models.QuickAppointment.objects.filter(flag=False).count()
@@ -28,6 +31,9 @@ def DashboardView(request):
     google_meet_count = models.GoogleMeet.objects.all().count()
     total_shop_count = models.ShopRequest.objects.all().count()
     new_shop_count = models.ShopRequest.objects.filter(shop_status="New Request").count()
+    staff_count = User.objects.filter(is_staff="True").count()
+    blogger_count = User.objects.filter(is_staff="False").count()
+
 
     today_date = datetime.today().date()
     todat1 = models.PatentRegistration.objects.filter(booking_date=today_date,flag=False)
@@ -73,8 +79,10 @@ def DashboardView(request):
         'new_shop_count':new_shop_count,
         'total_shop_count':total_shop_count,
         'user':user,
-        'today_date':datetime.today().date()
-        
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time(),
+        'staff_count':staff_count - 1,
+        'blogger_count':blogger_count,        
     }
     html = 'administration/dashboard.html'
     return render(request,html,context)
@@ -108,7 +116,10 @@ def PatentRegistrationView(request):
         else:
             obj_1.save()
             return redirect('patent_table')
-    context = {'today_date':datetime.today().date()}
+    context = {
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
+        }
     html = 'administration/forms/patent_registration.html'
     return render(request,html,context)
 
@@ -117,7 +128,8 @@ def PatentTableView(request):
     data = models.PatentRegistration.objects.all().order_by('-id')
     context = {
         'data':data,
-        'today_date':datetime.today().date()
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
     }
     html = 'administration/tables/patent_registration_table.html'
     return render(request,html,context)
@@ -153,7 +165,8 @@ def PatentEditView(request,id):
             return redirect('patent_table')
     context = {
         'data':data,
-        'today_date':datetime.today().date()
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
     }
     html = 'administration/forms/patent_edit_form.html'
     return render(request,html,context)
@@ -175,7 +188,8 @@ def QuickAppointmentTableView(request):
     data = models.QuickAppointment.objects.all().order_by('-id')
     context = {
         'data':data,
-        'today_date':datetime.today().date()
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
     }
     html = 'administration/tables/quick_appointment_table.html'
     return render(request,html,context)
@@ -211,7 +225,8 @@ def QuickAppointmentEditView(request,id):
             return redirect('quick_appointment_table')
     context = {
         'data':data,
-        'today_date':datetime.today().date()
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
     }
     html = 'administration/forms/quick_appointment_edit_form.html'
     return render(request,html,context)
@@ -233,7 +248,8 @@ def AppointmentTableView(request):
     data = models.Appointment.objects.all().order_by('-id')
     context = {
         'data':data,
-        'today_date':datetime.today().date()
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
     }
     html = 'administration/tables/appointment_table.html'
     return render(request,html,context)
@@ -269,7 +285,8 @@ def AppointmentEditView(request,id):
             return redirect('appointment_table')
     context = {
         'data':data,
-        'today_date':datetime.today().date()
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
     }
     html = 'administration/forms/appointment_edit_form.html'
     return render(request,html,context)
@@ -286,7 +303,11 @@ def AppointmentDeleteView(request,id):
 
 def ShopRequestTableView(request):
     data = models.ShopRequest.objects.all().order_by('-id')
-    context = { 'data' : data, 'today_date':datetime.today().date() }
+    context = {
+        'data' : data, 
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
+        }
     html = 'administration/tables/shop_request_table.html'
     return render(request,html,context)
 
@@ -312,7 +333,11 @@ def ShopRequestStatusChangeView(request,id):
         else:
             obj.save()
             return redirect('shop_request')
-    context = { 'data' : data, 'today_date':datetime.today().date() }
+    context = { 
+               'data' : data, 
+               'today_date':datetime.today().date(),
+               'current_time':datetime.now().time()
+            }
     html = 'administration/tables/shop_request_status_change.html'
     return render(request,html,context)
 
@@ -328,7 +353,11 @@ def DeleteShopRequestView(request,id):
 
 def MessageTableView(request):
     data = models.Messages.objects.all().order_by('-id')
-    context = { 'data' : data, 'today_date':datetime.today().date() }
+    context = { 
+            'data' : data,
+            'today_date':datetime.today().date(),
+            'current_time':datetime.now().time()
+            }
     html = 'administration/tables/message_table.html'
     return render(request,html,context)
 
@@ -344,7 +373,11 @@ def DeleteMessageView(request,id):
 
 def SubscribersTableView(request):
     data = models.Subscribe.objects.all().order_by('-id')
-    context = { 'data' : data, 'today_date':datetime.today().date() }
+    context = { 
+            'data' : data,
+            'today_date':datetime.today().date(),
+            'current_time':datetime.now().time()
+            }
     html = 'administration/tables/subscribers_table.html'
     return render(request,html,context)
 
@@ -369,7 +402,8 @@ def TodayTableView(request):
         'data1':data1, 
         'data2':data2,
         'data3':data3,
-        'today_date':datetime.today().date() 
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
     }
     html = 'administration/tables/today.html'
     return render(request,html,context)
@@ -385,7 +419,8 @@ def TomorrowTableView(request):
         'data1':data1, 
         'data2':data2,
         'data3':data3,
-        'today_date':datetime.today().date() 
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
     }
     html = 'administration/tables/tomorrow.html'
     return render(request,html,context)
@@ -406,7 +441,10 @@ def AdministrationLoginView(request):
             else:
                 return redirect('administration_login')
     
-    context = {'today_date':datetime.today().date()}
+    context = {
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
+        }
     html = 'administration/forms/administration_login_form.html'
     return render(request,html,context)
 
@@ -423,6 +461,7 @@ class NurseRegisterView(generic.CreateView):
        context = super(NurseRegisterView, self).get_context_data(*args, **kwargs)
        context["data"] = data
        context["today_date"] = datetime.today().date()
+       context["current_time"] = datetime.now().time()
        return context
 
 
@@ -449,6 +488,7 @@ class AddGalleryImage(CreateView):
         context = super(AddGalleryImage, self).get_context_data(*args, **kwargs)
         context["data"] = data
         context["today_date"] = datetime.today().date()
+        context["current_time"] = datetime.now().time()
         return context
 
       
@@ -472,6 +512,7 @@ class AddFeedbackView(CreateView):
         context = super(AddFeedbackView, self).get_context_data(*args, **kwargs)
         context["data"] = data
         context["today_date"] = datetime.today().date()
+        context["current_time"] = datetime.now().time()
         return context
 
 
@@ -496,6 +537,7 @@ class AddDoctorsProfileView(CreateView):
         context = super(AddDoctorsProfileView, self).get_context_data(*args, **kwargs)
         context["data"] = data
         context["today_date"] = datetime.today().date()
+        context["current_time"] = datetime.now().time()
         return context
 
 
@@ -519,6 +561,7 @@ class AddShopItemView(CreateView):
         context = super(AddShopItemView, self).get_context_data(*args, **kwargs)
         context["data"] = data
         context["today_date"] = datetime.today().date()
+        context["current_time"] = datetime.now().time()
         return context
   
     
@@ -546,7 +589,8 @@ def SearchPatientTableView(request):
          'search_mobile':search_mobile,
          'search_mobile2':search_mobile2,
          'data':data,
-         'today_date':datetime.today().date()
+         'today_date':datetime.today().date(),
+         'current_time':datetime.now().time()
          })
     else:    
       return render(request, 'administration/tables/search_patient_table.html', {}) 
@@ -566,7 +610,8 @@ def SearchAppointmentTableView(request):
          'search_mobile':search_mobile,
          'search_mobile2':search_mobile2,
          'data':data,
-         'today_date':datetime.today().date()
+         'today_date':datetime.today().date(),
+         'current_time':datetime.now().time()
          })
     else:    
       return render(request, 'administration/tables/search_appointment_table.html', {}) 
@@ -587,7 +632,8 @@ def SearchQuickAppointmentTableView(request):
          'search_mobile':search_mobile,
          'search_mobile2':search_mobile2,
          'data':data,
-         'today_date':datetime.today().date()
+         'today_date':datetime.today().date(),
+         'current_time':datetime.now().time()
          })
     else:    
       return render(request, 'administration/tables/search_quick_appointment_table.html', {}) 
@@ -618,7 +664,11 @@ def AddCountView(request):
         else:
             obj.save()
             return redirect('add_count')
-    context = { 'data' : data, 'today_date':datetime.today().date() }
+    context = {
+        'data' : data,
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
+        }
     html = 'administration/forms/add_count.html'
     return render(request,html,context)
 
@@ -629,6 +679,43 @@ def DeleteCountView(request,id):
     return redirect('add_count')
     context = {}
     html = 'administration/forms/add_count.html'
+    return render(request,html,context)
+
+
+def AddSocialMediaView(request):
+    data = models.SocialMedia.objects.all()
+    if request.method == 'POST':
+        twitter = request.POST.get('twitter')
+        facebook = request.POST.get('facebook')
+        instagram = request.POST.get('instagram')
+        google_plus = request.POST.get('google_plus')
+        linkedin = request.POST.get('linkedin')
+        submit_date = datetime.today().date()
+
+        obj = models.SocialMedia()
+        obj.twitter = twitter
+        obj.facebook = facebook
+        obj.instagram = instagram
+        obj.google_plus = google_plus
+        obj.linkedin = linkedin
+        obj.submit_date = submit_date
+        obj.save()
+        return redirect('add_social_media')
+    context = {
+        'data' : data,
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
+        }
+    html = 'administration/forms/add_social_media.html'
+    return render(request,html,context)
+
+
+def DeleteSocialMediaView(request,id):
+    obj = models.SocialMedia.objects.get(id=id)
+    obj.delete()
+    return redirect('add_social_media')
+    context = {}
+    html = 'administration/forms/add_social_media.html'
     return render(request,html,context)
 
 
@@ -650,7 +737,11 @@ def AddGoogleMeetView(request):
         else:
             obj.save()
             return redirect('add_google_meet')
-    context = { 'data' : data, 'today_date':datetime.today().date() }
+    context = {
+        'data' : data,
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
+        }
     html = 'administration/forms/add_google_meet.html'
     return render(request,html,context)
 
@@ -689,7 +780,11 @@ def AddTodoView(request):
         else:
             obj.save()
             return redirect('add_todo')
-    context = { 'data' : data, 'today_date':datetime.today().date() }
+    context = {
+        'data' : data,
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
+        }
     html = 'administration/forms/add_todo_form.html'
     return render(request,html,context)
 
@@ -717,7 +812,11 @@ def EditTodoView(request,id):
         else:
             obj.save()
             return redirect('add_todo')
-    context = { 'data' : data, 'today_date':datetime.today().date() }
+    context = {
+        'data' : data,
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
+        }
     html = 'administration/forms/edit_todo_form.html'
     return render(request,html,context)
 
@@ -741,7 +840,11 @@ def EditTodoStatusView(request,id):
         else:
             obj.save()
             return redirect('add_todo')
-    context = { 'data' : data, 'today_date':datetime.today().date() }
+    context = {
+        'data' : data,
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
+        }
     html = 'administration/forms/edit_todo_status.html'
     return render(request,html,context)
 
@@ -771,7 +874,11 @@ def AddNotesView(request):
         else:
             obj.save()
             return redirect('add_notes')
-    context = { 'data' : data, 'today_date':datetime.today().date() }
+    context = {
+        'data' : data,
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time()
+        }
     html = 'administration/forms/add_notes.html'
     return render(request,html,context)
 
@@ -783,3 +890,89 @@ def DeleteNotesView(request,id):
     context = {}
     html = 'administration/forms/add_notes.html'
     return render(request,html,context)
+
+
+def AddAccountView(request):
+    data = models.Accounts.objects.all().order_by('-id')
+    income_data = models.Accounts.objects.filter(income_flag = 'True')
+    expense_data = models.Accounts.objects.filter(expense_flag = 'True')
+    total_expense = 0
+    for instance in data:
+        total_expense += instance.expense
+    
+    total_income = 0
+    for instance in data:
+        total_income += instance.income
+    
+    if request.method == 'POST' and 'ExpenseForm' in request.POST:
+        expense = request.POST.get('expense')
+        description = request.POST.get('description_expense')
+        start_Date = datetime.today().date()
+        obj = models.Accounts()
+        obj.expense = float(expense)
+        obj.total_expense = total_expense + float(expense)
+        obj.description = description
+        obj.start_Date = start_Date
+        obj.expense_flag = True
+        if expense == '' or description == '':
+            return redirect('error')
+        else:
+            obj.save()
+            return redirect('add_account')
+    
+    if request.method == 'POST' and 'IncomeForm' in request.POST:
+        income = request.POST.get('income')
+        description = request.POST.get('description_income')
+        start_Date = datetime.today().date()
+        obj = models.Accounts()
+        obj.income = float(income)
+        obj.total_income = total_income + float(income)
+        obj.description = description
+        obj.start_Date = start_Date
+        obj.income_flag = True
+        if income == '' or description == '':
+            return redirect('error')
+        else:
+            obj.save()
+            return redirect('add_account')
+        
+    context = {
+        'data' : data,
+        'income_data' : income_data,
+        'expense_data' : expense_data,
+        'today_date':datetime.today().date(),
+        'current_time':datetime.now().time(),
+        'total_income':total_income,
+        'total_expense':total_expense,
+        'profit': total_income-total_expense
+        }
+    html = 'administration/forms/add_account.html'
+    return render(request,html,context)
+
+
+def DeleteAccountView(request,id):
+    obj = models.Accounts.objects.get(id=id)
+    obj.delete()
+    return redirect('add_account')
+    context = {}
+    html = 'administration/forms/add_account.html'
+    return render(request,html,context)
+
+import csv
+from django.http import HttpResponse
+
+def file_load_view(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachement; filename="Expanse_and_Income.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Date','Income', 'Expanse', 'Details'])
+
+    data =  models.Accounts.objects.values('start_Date','income','expense','description')
+    data = data.values_list('start_Date','income','expense','description')
+
+    for i in data:
+        writer.writerow(i)
+
+    return response
+

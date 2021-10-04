@@ -6,10 +6,10 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Doctors Profiles</h2>
+          <h2>Physio Profile</h2>
           <p></p>
           {% if not data %}
-          <p class="text-danger pt-5">* Add Doctors Profile from Administration Section</p>
+          <p class="text-danger pt-5">* Add Physio Profile from Administration Section</p>
           {% endif %}
         </div>
 
@@ -18,7 +18,9 @@
           {% for item in data %}
           <div class="col-lg-6">
             <div class="member d-flex align-items-start">
-              <div class="pic"><img src="{{ item.profile_photo.url }}" class="img-fluid" alt="{{ item.name }}"></div>
+              <div class="pic">
+                <img src="{{ item.profile_photo.url }}" class="img-fluid" alt="{{ item.name }}">
+              </div>
               <div class="member-info">
                 <h4>{{ item.name }}</h4>
                 <span>{{ item.designation }}</span>

@@ -14,13 +14,15 @@
         <a href="{% url 'login' %}">Login <i class="icofont-login"></i></a>
         {% endif %} 
       </div>
+      {% for s in social %}
       <div class="social-links">
-        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-        <a href="#" class="skype"><i class="icofont-skype"></i></a>
-        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+        <a href="{{s.twitter}}" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="{{s.facebook}}" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="{{s.instagram}}" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="{{s.google_plus}}" class="skype"><i class="icofont-skype"></i></a>
+        <a href="{{s.linkedin}}" class="linkedin"><i class="icofont-linkedin"></i></i></a>
       </div>
+      {% endfor %}
     </div>
   </div>
 
@@ -48,7 +50,7 @@
           <li class="{{services}}"><a href="{% url 'services' %}">Services</a></li>
           <li class="{{blogs}}"><a href="{% url 'blog_home' %}">Blogs</a></li>
           <li class="{{shop}}"><a href="{% url 'shop' %}">Shop</a></li>
-          <li class="drop-down"><a href="">Settings</a>
+          <li class="drop-down"><a>Settings</a>
             <ul>
               {% if user.is_authenticated %}
               <li><a href="{% url 'logout' %}">Logout</a></li>

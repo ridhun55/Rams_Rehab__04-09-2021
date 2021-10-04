@@ -59,7 +59,7 @@
                               </a>
                            </td>
                            <td>
-                              <a class="green-text" href="{% url 'patent_edit' item.id %}"><strong><i class="fas fa-pencil-alt"></i></strong></a>
+                              <a class="green-text" href="{% url 'quick_appointment_edit' item.id %}"><strong><i class="fas fa-pencil-alt"></i></strong></a>
                            </td>
                            <td>
                               <a class="red-text" href="{% url 'patent_delete' item.id %}"><strong><i class="fas fa-trash-alt"></i></strong></a>
@@ -77,21 +77,21 @@
                                  <span class="badge badge-success badge-pill pull-right">{{ forloop.revcounter }}</span>
                                  {% endif %}
                               </th>
-                              <td>{{ item.name |capfirst }}</td>
-                              <td>{{ item.age }}</td>
-                              <td>{{ item.mobile }}</td>
-                              <td>{{ item.place |capfirst }}</td>
-                              <td>{{ item.booking_date | date:"d-m-Y"}}</td>
+                              <td>{% if item.name %}{{ item.name |capfirst }}{% else %}____{% endif %}</td>
+                              <td>{% if item.age %}{{ item.age }}{% else %}____{% endif %}</td>
+                              <td>{% if item.mobile %}{{ item.mobile }}{% else %}____{% endif %}</td>
+                              <td>{% if item.place %}{{ item.place |capfirst }}{% else %}____{% endif %}</td>
+                              <td>{% if item.booking_date %}{{ item.booking_date | date:"d-m-Y"}}{% else %}____{% endif %}</td>
                               <td>
                                  <a class="text-info" data-toggle="modal" data-target="#sideModalBLWarningDemo{{item.id}}">
                                  <strong>Details</strong>
                                  </a>
                               </td>
                               <td>
-                                 <a class="green-text" href="{% url 'patent_edit' item.id %}"><strong><i class="fas fa-pencil-alt"></i></strong></a>
+                                 <a class="green-text" href="{% url 'quick_appointment_edit' item.id %}"><strong><i class="fas fa-pencil-alt"></i></strong></a>
                               </td>
                               <td>
-                                 <a class="red-text" href="{% url 'patent_delete' item.id %}"><strong><i class="fas fa-trash-alt"></i></strong></a>
+                                 <a class="red-text" href="{% url 'quick_appointment_delete' item.id %}"><strong><i class="fas fa-trash-alt"></i></strong></a>
                               </td>
                            </tr>
                            {% endfor %}
@@ -122,7 +122,7 @@
                                     <a class="green-text" href="{% url 'patent_edit' item.id %}"><strong><i class="fas fa-pencil-alt"></i></strong></a>
                                  </td>
                                  <td>
-                                    <a class="red-text" href="{% url 'patent_delete' item.id %}"><strong><i class="fas fa-trash-alt"></i></strong></a>
+                                    <a class="red-text" href="{% url 'quick_appointment_delete' item.id %}"><strong><i class="fas fa-trash-alt"></i></strong></a>
                                  </td>
                               </tr>
                               {% endfor %}

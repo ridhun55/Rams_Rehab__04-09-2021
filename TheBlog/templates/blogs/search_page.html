@@ -150,7 +150,7 @@
          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="card">
                <a href="{% url 'article' search.pk %}">
-                  <img class="card-img-top" src="{% static 'assets/img/services/ems.jpg' %}" alt="Card image cap">
+                  <img class="card-img-top" src="{{ search.header_image.url }}" alt="image of {{ search.title }}">
                </a>
                <div class="cat_date">
                   <a class="card-sub" style="position: absolute;left: 20px;top: 188px;" href="{% url 'category' search.category|slugify %}">{{ search.category | capfirst  }}</a>
@@ -158,7 +158,7 @@
                </div>
                  <div class="card-body">
                   <a href="{% url 'article' search.pk %}">
-                     <h5 class="card-title">{{ search.title }}<span class="card-sub"> </span></h5>
+                     <h5 class="card-title">{{ search.title|slice:":23"|safe }}..<span class="card-sub"> </span></h5>
                   </a>
                  <p class="card-text">{{ search.snippet|slice:":100"|safe }}... <a href="{% url 'article' search.pk %}"class="d-flex flex-row-reverse m-0 p-0"> ReadMore</a></p>
                </div>
@@ -171,7 +171,7 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
                <div class="card">
                   <a href="{% url 'article' search.pk %}">
-                     <img class="card-img-top" src="{% static 'assets/img/services/ems.jpg' %}" alt="Card image cap">
+                     <img class="card-img-top" src="{{ search.header_image.url }}" alt="image of {{ search.title }}">
                   </a>
                   <div class="cat_date">
                      <a class="card-sub" style="position: absolute;left: 20px;top: 188px;" href="{% url 'category' search.category|slugify %}">{{ search.category | capfirst  }}</a>
@@ -179,7 +179,7 @@
                   </div>
                     <div class="card-body">
                      <a href="{% url 'article' search.pk %}">
-                        <h5 class="card-title">{{ search.title }}<span class="card-sub"> </span></h5>
+                        <h5 class="card-title">{{ search.title|slice:":23"|safe }}..<span class="card-sub"> </span></h5>
                      </a>
                     <p class="card-text">{{ search.snippet|slice:":100"|safe }}... <a href="{% url 'article' search.pk %}"class="d-flex flex-row-reverse m-0 p-0"> ReadMore</a></p>
                   </div>
