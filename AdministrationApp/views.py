@@ -958,6 +958,21 @@ def DeleteAccountView(request,id):
     html = 'administration/forms/add_account.html'
     return render(request,html,context)
 
+
+def DeleteAllAccountWarnningView(request):
+    context = {}
+    html = 'administration/forms/delete_all_warnning.html'
+    return render(request,html,context)
+
+
+def DeleteAllAccountView(request):
+    obj = models.Accounts.objects.all()
+    obj.delete()
+    return redirect('add_account')
+    context = {}
+    html = 'administration/forms/add_account.html'
+    return render(request,html,context)
+
 import csv
 from django.http import HttpResponse
 
