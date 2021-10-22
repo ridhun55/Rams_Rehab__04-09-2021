@@ -22,6 +22,7 @@ urlpatterns = [
     path('musculoskeletal/ankle', views.AnkleView, name='ankle'),
     path('musculoskeletal/shoulder', views.ShoulderView, name='shoulder'),
     path('musculoskeletal/wrist', views.WristView, name='wrist'),
+    path('musculoskeletal/knee_joint', views.KneeJointView, name='knee_joint'),
     path('musculoskeletal/head_neck', views.HeadNeckView, name='head_neck'),
     path('musculoskeletal/lumbar_spine', views.LumbarSpineView, name='lumbar_spine'),
 

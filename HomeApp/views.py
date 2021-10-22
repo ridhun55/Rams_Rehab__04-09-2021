@@ -359,6 +359,22 @@ def WristView(request):
     html = 'notes/wrist.html'
     return render(request,html,context)
 
+def KneeJointView(request):
+    if request.method == 'POST' and 'email' in request.POST:
+        email = request.POST.get('email')
+        objemail = models.Subscribe()
+        objemail.email = email
+        objemail.submit_date = datetime.today().date()
+        if email == '':
+            return redirect('error')
+        else:
+            objemail.save()
+            return redirect('success')
+        
+    context = {'social':models.SocialMedia.objects.all()}
+    html = 'notes/knee_joint.html'
+    return render(request,html,context)
+
 def HeadNeckView(request):
     if request.method == 'POST' and 'email' in request.POST:
         email = request.POST.get('email')
