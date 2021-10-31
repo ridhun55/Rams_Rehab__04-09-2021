@@ -35,10 +35,10 @@
                         {% for item in data %}
                         <tr>
                            <th>
-                              {{ forloop.revcounter }}
+                              <b>{{ forloop.revcounter }}</b>
                            </th>
-                           <td>{{ item.submit_date | date:"d-m-Y" }}</td>
-                           <td>{{ item.email }}</td>
+                           <td><b>{{ item.submit_date | date:"d-m-Y" }}</b></td>
+                           <td><b>{{ item.email }}</b></td>
                            <td>
                                <a class="red-text" href="{% url 'delete_subscribers' item.id %}"><strong><i class="fas fa-trash-alt"></i></strong></a>
                            </td>

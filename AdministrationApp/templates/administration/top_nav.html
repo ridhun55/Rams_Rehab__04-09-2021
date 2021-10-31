@@ -32,6 +32,7 @@
                {% endif %}
             </li>
             
+            {% if user.is_authenticated %}
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
                  Website Settings
@@ -56,6 +57,12 @@
                      <a class="nav-link waves-effect" href="{% url 'add_count' %}"><b>Add Counter Value</b></a>
                   </li>
                   <li class="nav-item mx-1">
+                     <a class="nav-link waves-effect" href="{% url 'add_social_media' %}"><b>Add Social Media Link</b></a>
+                  </li>
+                  <li class="nav-item mx-1">
+                     <a class="nav-link waves-effect" href="{% url 'add_account' %}"><b>Income & Expanse</b></a>
+                  </li>
+                  <li class="nav-item mx-1">
                      <a class="nav-link waves-effect" href="{% url 'add_google_meet' %}"><b>Add Google Meet Link</b></a>
                   </li>
                   <li class="nav-item mx-1">
@@ -63,10 +70,12 @@
                   </li>
                </ul>
             </li>
+            {% endif %}
             {% if today_date %}
                <li class="nav-item mr-2"> 
                   <a class="nav-link waves-effect" style="color: #1e80b0;font-family: 'Play', sans-serif;;font-size: 19px;line-height: 22px;letter-spacing: 0.07em;font-weight: 600;padding-left: 63px;"> 
-                     Date : {{ today_date|date:"d/m/Y" }}
+                     {{ today_date|date:"d/m/Y" }} -
+                     <span class="text-danger">{{current_time}}</span>
                   </a>
                </li>
             {% endif %}

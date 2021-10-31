@@ -163,6 +163,18 @@ class CounterValues(models.Model):
 
     def __str__(self):
       return self.docter_count
+
+
+class SocialMedia(models.Model):
+    twitter = models.CharField(max_length=400, null=True, blank=True)
+    facebook = models.CharField(max_length=400, null=True, blank=True)
+    instagram = models.CharField(max_length=400, null=True, blank=True)
+    google_plus = models.CharField(max_length=400, null=True, blank=True)
+    linkedin = models.CharField(max_length=400, null=True, blank=True)
+    submit_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+      return self.facebook
   
   
 class GoogleMeet(models.Model):
@@ -190,3 +202,18 @@ class Notes(models.Model):
 
     def __str__(self):
       return self.note_body
+  
+  
+class Accounts(models.Model):
+    income = models.FloatField(null=True,blank=True,default=0)
+    expense = models.FloatField(null=True,blank=True,default=0)
+    total_expense = models.FloatField(null=True,blank=True,default=0)
+    total_income = models.FloatField(null=True,blank=True,default=0)
+    description = models.CharField(max_length=1000, null=True, blank=True)
+    start_Date = models.DateField(null=True,blank=True)
+    end_Date = models.DateField(null=True,blank=True)    
+    expense_flag = models.BooleanField(default=False,null=True,blank=True)
+    income_flag = models.BooleanField(default=False,null=True,blank=True)
+    
+    def __str__(self):
+      return self.description

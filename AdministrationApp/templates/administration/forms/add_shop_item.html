@@ -54,7 +54,7 @@
             </h4>
             <h5 class="my-2 mb-sm-0 pt-1 text-danger">
                <br>
-               <span>Onlu admin can Add Shop Items</span><br><br>
+               <span>Only admin can Add Shop Items</span><br><br>
                <p>- Please Contact Admin -</p>
             </h5>
          </div>
@@ -62,7 +62,7 @@
    {% endif %}
    </div>
 
-   {% if user.is_superuser %}
+   {% if user.is_staff %}
    <div class="col-md-12 mb-4 mt-4">
       <div class="card">
          <div class="card-header bg-primary text-white d-flex justify-content-between">
@@ -75,11 +75,13 @@
                      <th>Roll</th>
                      <th>Image</th>
                      <th>Item</th>
+                     <th>Product Code</th>
                      <th>Price</th>
                      <th>Offer Price</th>
-                     <th>Rating</th>
                      <th>Added Date</th>
+                     {% if user.is_superuser %}
                      <th>Delete</th>
+                     {% endif %}
                   </tr>
                </thead>
                <tbody class="text-center" style="line-height: 50px;">
@@ -92,13 +94,15 @@
                         {% endif %}
                      </td>
                      <th >{{ item.item |capfirst }}</th>
+                     <th class="text-danger"><b>P{{ item.id }}</b></th>
                      <th >{{ item.price }}</th>
-                     <th >{% if item.offer_price %}{{ item.offer_price }}{% endif %}</th>
-                     <th >{% if item.rating %}{{ item.rating }}{% endif %}</th>
+                     <th class="text-danger"><b>{% if item.offer_price %}{{ item.offer_price }}{% else %}_____{% endif %}</b></th>
                      <th >{{ item.submit_date | date:'d-m-Y' }}</th>
+                     {% if user.is_superuser %}
                      <td>
                         <a class="red-text" href="{% url 'delete_shop_item' item.id %}"><strong><i class="fas fa-trash-alt"></i></strong></a>
                      </td>
+                     {% endif  %}
                   </tr>
                   {% endfor %}
                </tbody>

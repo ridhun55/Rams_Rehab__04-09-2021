@@ -116,56 +116,57 @@
             </form>
           </nav>
 
-        <div class="section-title">
-          <h2>{{ data.item }}</h2>
-          <p class="mb-5">Product Details</p>
-          <div class="container row">
-             <div class="col-md-6">
-                <img style="width: 100%;
-                max-width: 600px;
-                height: auto;" src="{{ data.item_Image.url}}" alt="" srcset="">
-             </div>
-             <div class="col-md-6 d-flex align-items-stretch">
+         {% if data %}
+         <div class="section-title">
+         <h2>{{ data.item }}</h2>
+         <p class="mb-5">Product Details</p>
+         <div class="container row">
+            <div class="col-md-6">
+               <img style="width: 100%;
+               max-width: 600px;
+               height: auto;" src="{{ data.item_Image.url}}" alt="" srcset="">
+            </div>
+            <div class="col-md-6 d-flex align-items-stretch">
                
                <div class="card" style="width: 100%;">
                   <div class="card-body mt-4">
-                      <h4 style="color: #2c4964;"> {{ data.item }}</h4><hr>
-                      <table class="d-flex justify-content-center">
-                         <tr>
-                            <td class="text-right"> Product Id :</td>
-                            <td class="text-left"> <span class="text-danger ml-2"><strong>P{{ data.id }}</strong></span></td>
+                     <h4 style="color: #2c4964;"> {{ data.item }}</h4><hr>
+                     <table class="d-flex justify-content-center">
+                        <tr>
+                           <td class="text-right"> Product Id :</td>
+                           <td class="text-left"> <span class="text-danger ml-2"><strong>P{{ data.id }}</strong></span></td>
                         </tr>
-                         <tr>
-                            <td class="text-right"> Category :</td>
-                            <td class="text-left"> <span class="text-info ml-2"><strong>{{ data.category |capfirst }}</strong></span></td>
+                        <tr>
+                           <td class="text-right"> Category :</td>
+                           <td class="text-left"> <span class="text-info ml-2"><strong>{{ data.category |capfirst }}</strong></span></td>
                         </tr>
                         <tr><td class="text-justify pt-3"></td></tr>
 
                         {% if data.offer_price %}
                         <tr>
-                            <td class="text-right"> Price :</td>
-                            <td class="text-left"> <span class="text-dark ml-2"><strike>{{ data.price }}</strike></span></td>
+                           <td class="text-right"> Price :</td>
+                           <td class="text-left"> <span class="text-dark ml-2"><strike>{{ data.price }}</strike></span></td>
                         </tr>
-                         <tr>
-                            <td class="text-right"> Our Price :</td>
-                            <td class="text-left"> <span class="text-danger ml-2"><strong>{{ data.offer_price }}</strong></span></td>
+                        <tr>
+                           <td class="text-right"> Our Price :</td>
+                           <td class="text-left"> <span class="text-danger ml-2"><strong>{{ data.offer_price }}</strong></span></td>
                         </tr>
                         {% else %}
                         <tr>
                            <td class="text-right"> Offer Price :</td>
                            <td class="text-left"> <span class="text-danger ml-2"><strong>{{ data.price }}</strong></span></td>
-                       </tr>
+                     </tr>
                         {% endif %}
-                      </table>
-                      <hr>
-                      <p style="text-align: left;">Discription : </p>
-                      <p class="text-justify mt-1">{{ data.discription |capfirst }}</p>
-                    </div>
-                    <div class="card-body">
-                       <hr>
-                       <p class="text-info">To Get this product just send your contact details.. Our team will contact you soon </p>
-                       <form action="" method="POST" class="row py-4">
-                          {% csrf_token %}
+                     </table>
+                     <hr>
+                     <p style="text-align: left;">Discription : </p>
+                     <p class="text-justify mt-1">{{ data.discription |capfirst }}</p>
+                  </div>
+                  <div class="card-body">
+                     <hr>
+                     <p class="text-info">To Get this product just send your contact details.. Our team will contact you soon </p>
+                     <form action="" method="POST" class="row py-4">
+                        {% csrf_token %}
                         <div class="col-md-6">
                            <input type="text" name="name" class="form-control" id="name" placeholder="Name" >
                         </div>
@@ -175,15 +176,17 @@
                         <div class="col-md-4 mt-3 mx-auto">
                            <button class="btn btn-block btn-sm btn-info" type="submit">Submit</button>
                         </div>
-                       </form>
-                    </div>
+                     </form>
+                  </div>
                </div>
 
-             </div>
-          </div>
-        <br>
-      </div>
+            </div>
+         </div>
+            <br>
+         </div>
+         {% else %}
 
+         {% endif %}
 
         </div>
       </div>

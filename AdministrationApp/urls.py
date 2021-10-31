@@ -21,6 +21,8 @@ from AdministrationApp.views import AddCountView, DeleteCountView
 from AdministrationApp.views import AddGoogleMeetView, DeleteGoogleMeetView
 from AdministrationApp.views import AddTodoView, EditTodoView, EditTodoStatusView, DeleteTodoView
 from AdministrationApp.views import AddNotesView, DeleteNotesView
+from AdministrationApp.views import AddAccountView, file_load_view, DeleteAccountView, DeleteAllAccountWarnningView, DeleteAllAccountView
+from AdministrationApp.views import AddSocialMediaView, DeleteSocialMediaView
 
 urlpatterns = [
     path('login/', AdministrationLoginView, name='administration_login'),
@@ -88,4 +90,12 @@ urlpatterns = [
     path('add_notes', AddNotesView, name="add_notes"),
     path('delete_notes/<int:id>/delete', DeleteNotesView, name="delete_notes"),
     
+    path('add_account', AddAccountView, name="add_account"),
+    path('export/csv/$', file_load_view, name="export_data"),
+    path('delete_account/<int:id>', DeleteAccountView, name="delete_account"),
+    path('delete_all_account_warnning', DeleteAllAccountWarnningView, name="delete_all_account_warnning"),
+    path('delete_all_account', DeleteAllAccountView, name="delete_all_account"),
+    
+    path('add_social_media', AddSocialMediaView, name="add_social_media"),
+    path('delete_social_media<int:id>', DeleteSocialMediaView, name="delete_social_media"),
 ]
