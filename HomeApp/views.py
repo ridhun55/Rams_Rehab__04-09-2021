@@ -184,7 +184,7 @@ def ContactView(request):
             obj.save()
             return redirect('success')
     
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
