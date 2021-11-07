@@ -23,7 +23,7 @@ def HomeView(request):
             obj.save()
             return redirect('success')
 
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -47,7 +47,7 @@ def HomeView(request):
 
 def AboutView(request):
     c_data = models.CounterValues.objects.all()
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -66,7 +66,7 @@ def AboutView(request):
 
 def ServicesView(request):
     c_data = models.CounterValues.objects.all()
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -84,7 +84,7 @@ def ServicesView(request):
 
 def GalleryView(request):
     c_data = models.CounterValues.objects.all()
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -103,7 +103,7 @@ def GalleryView(request):
 
 def ShopView(request):
     data = models.Shop.objects.all()
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -148,7 +148,7 @@ def ShopDetailView(request,id):
             obj.save()
             return redirect('success')
         
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -227,7 +227,7 @@ def AppointmentView(request):
             obj.save()
             return redirect('success')
         
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -246,7 +246,7 @@ def AppointmentView(request):
 # ======== MigraineView ======================================
 
 def MigraineView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -264,7 +264,7 @@ def MigraineView(request):
 # ======== MusculoskeletalView ======================================
 
 def MusculoskeletalView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -280,7 +280,7 @@ def MusculoskeletalView(request):
     return render(request,html,context)
 
 def ElbowView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -296,7 +296,7 @@ def ElbowView(request):
     return render(request,html,context)
 
 def HipView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -312,7 +312,7 @@ def HipView(request):
     return render(request,html,context)
 
 def AnkleView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -328,7 +328,7 @@ def AnkleView(request):
     return render(request,html,context)
 
 def ShoulderView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -344,7 +344,7 @@ def ShoulderView(request):
     return render(request,html,context)
 
 def WristView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -360,7 +360,7 @@ def WristView(request):
     return render(request,html,context)
 
 def KneeJointView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -376,7 +376,7 @@ def KneeJointView(request):
     return render(request,html,context)
 
 def HeadNeckView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -392,7 +392,7 @@ def HeadNeckView(request):
     return render(request,html,context)
 
 def LumbarSpineView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -411,7 +411,7 @@ def LumbarSpineView(request):
 # =========================================
 
 def NeurologyView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -427,7 +427,7 @@ def NeurologyView(request):
     return render(request,html,context)
 
 def NeurologyNoteView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -445,7 +445,7 @@ def NeurologyNoteView(request):
 # ==========================================
 
 def PediatricsView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -461,7 +461,7 @@ def PediatricsView(request):
     return render(request,html,context)
 
 def PaediatricNoteView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -477,7 +477,7 @@ def PaediatricNoteView(request):
     return render(request,html,context)
 
 def MonthlyBabyMilestoneView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
@@ -506,7 +506,7 @@ def ErrorView(request):
     return render(request,html,context)
 
 def SearchProductsView(request):
-    if request.method == 'POST' and 'email' in request.POST:
+    if request.method == 'POST' and 'Subscribe' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
         objemail.email = email
