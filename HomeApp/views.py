@@ -102,6 +102,7 @@ def GalleryView(request):
 
 def ShopView(request):
     data = models.Shop.objects.all()
+    social = models.SocialMedia.objects.all()
     if request.method == 'POST' and 'email' in request.POST:
         email = request.POST.get('email')
         objemail = models.Subscribe()
@@ -112,8 +113,7 @@ def ShopView(request):
         else:
             objemail.save()
             return redirect('success')
-    context = {'data': data, 'home': '', 'about': '', 'services': '', 'gallery': 'active', 'contact': ''}
-    context = {'social':models.SocialMedia.objects.all()}
+    context = {'data': data, 'home': '', 'about': '', 'services': '', 'gallery': 'active', 'contact': '', 'social':social}
     html = 'shop.html'
     return render(request,html,context)
 
