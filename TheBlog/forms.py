@@ -3,11 +3,11 @@ from django.db import models
 from django.forms import widgets
 from TheBlog.models import Comment, Post, Category
 
-choices = Category.objects.all().values_list('name','name')
+# choices = Category.objects.all().values_list('name','name')
 
-choice_list = []
-for item in choices:
-   choice_list.append(item)
+# choice_list = []
+# for item in choices:
+#    choice_list.append(item)
 
 
 class PostForm(forms.ModelForm):
@@ -20,10 +20,13 @@ class PostForm(forms.ModelForm):
          'title_tag': forms.TextInput(attrs={'class':'form-control','placeholder':'Blog Title Tag'}),
          'author': forms.TextInput(attrs={'class':'form-control','value':'', 'id':'dev','type':'hidden'}),
          # 'author': forms.Select(attrs={'class':'form-control'}),
-         'category': forms.Select(choices=choice_list, attrs={'class':'form-control'}),
+         'category': forms.Select(choices=_make_choices, attrs={'class':'form-control'}),
          'body': forms.Textarea(attrs={'class':'form-control','placeholder':'Blog content type here...'}),
          'snippet': forms.Textarea(attrs={'class':'form-control','placeholder':'Blog Snippet'}),
       }
+
+   def _make_choices():
+      return [(c, c) for c in Category.objects.all().values_list('name', flat=True)]
 
 
 class CategoryForm(forms.ModelForm):
