@@ -11,6 +11,9 @@ from TheBlog.models import Comment, Post, Category
 
 
 class PostForm(forms.ModelForm):
+   def _make_choices():
+      return [(c, c) for c in Category.objects.all().values_list('name', flat=True)]
+      
    class Meta:
       model = Post
       fields = ('title', 'title_tag', 'author', 'category', 'body','snippet', 'header_image')
@@ -25,8 +28,6 @@ class PostForm(forms.ModelForm):
          'snippet': forms.Textarea(attrs={'class':'form-control','placeholder':'Blog Snippet'}),
       }
 
-   def _make_choices():
-      return [(c, c) for c in Category.objects.all().values_list('name', flat=True)]
 
 
 class CategoryForm(forms.ModelForm):
