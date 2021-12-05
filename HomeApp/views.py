@@ -56,9 +56,8 @@ def AboutView(request):
         else:
             objemail.save()
             return redirect('success')
-    context = {'home': '', 'about': 'active', 'services': '', 'gallery': '', 'contact': ''}
-    context = {'c_data':c_data }
-    context = {'social':models.SocialMedia.objects.all()}
+    social = models.SocialMedia.objects.all()
+    context = {'home': '', 'about': 'active', 'services': '', 'gallery': '', 'contact': '','c_data':c_data , 'social':social}
     html = 'about.html'
     return render(request,html,context)
 
@@ -75,8 +74,8 @@ def ServicesView(request):
         else:
             objemail.save()
             return redirect('success')
-    context = {'home': '', 'c_data':c_data, 'about': '', 'services': 'active', 'gallery': '', 'contact': ''}
-    context = {'social':models.SocialMedia.objects.all()}
+    social = models.SocialMedia.objects.all()
+    context = {'home': '', 'c_data':c_data, 'about': '', 'services': 'active', 'gallery': '', 'contact': '', 'social':social}
     html = 'services.html'
     return render(request,html,context)
 
@@ -94,8 +93,8 @@ def GalleryView(request):
             objemail.save()
             return redirect('success')
     img_data = models.Gallery.objects.all()
-    context = {'img_data': img_data,'c_data':c_data, 'home': '', 'about': '', 'services': '', 'gallery': 'active', 'contact': ''}
-    context = {'social':models.SocialMedia.objects.all()}
+    social = models.SocialMedia.objects.all()
+    context = {'img_data': img_data,'c_data':c_data, 'home': '', 'about': '', 'services': '', 'gallery': 'active', 'contact': '', 'social':social}
     html = 'gallery.html'
     return render(request,html,context)
 
@@ -113,6 +112,7 @@ def ShopView(request):
         else:
             objemail.save()
             return redirect('success')
+    social = models.SocialMedia.objects.all()
     context = {'data': data, 'home': '', 'about': '', 'services': '', 'gallery': 'active', 'contact': '', 'social':social}
     html = 'shop.html'
     return render(request,html,context)
@@ -157,9 +157,8 @@ def ShopDetailView(request,id):
         else:
             objemail.save()
             return redirect('success')
-        
-    context = {'data': data, 'home': '', 'about': '', 'services': '', 'gallery': 'active', 'contact': ''}
-    context = {'social':models.SocialMedia.objects.all()}
+    social = models.SocialMedia.objects.all()
+    context = {'data': data, 'home': '', 'about': '', 'services': '', 'gallery': 'active', 'contact': '', 'social':social}
     html = 'shop_detail.html'
     return render(request,html,context)
 # ==============================================================
@@ -193,9 +192,9 @@ def ContactView(request):
         else:
             objemail.save()
             return redirect('success')
-        
-    context = {'home': '', 'about': '', 'services': '', 'gallery': '', 'contact': 'active'}
-    context = {'social':models.SocialMedia.objects.all()}
+    
+    social = models.SocialMedia.objects.all()
+    context = {'home': '', 'about': '', 'services': '', 'gallery': '', 'contact': 'active', 'social':social}
     html = 'contact.html'
     return render(request,html,context)
 
